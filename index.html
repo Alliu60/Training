@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Training Resources - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .intro p {
+            color: #718096;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-card h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .resource-card h3::before {
+            content: "🤖";
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .resource-card p {
+            color: #4a5568;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .resource-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .resource-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>AI Training Resources</h1>
+            <p>Your Gateway to AI Learning and Tools</p>
+        </header>
+
+        <main class="content">
+            <section class="intro">
+                <h2>Welcome to Your AI Learning Hub</h2>
+                <p>Explore comprehensive guides and interactive resources for the latest AI tools and technologies. Each resource is designed to help you master cutting-edge AI applications.</p>
+            </section>
+
+            <section class="resources-grid">
+                <div class="resource-card">
+                    <h3>Canva 2025 Education</h3>
+                    <p>Discover how Canva's AI-powered design tools are revolutionizing educational content creation in 2025.</p>
+                    <a href="Canva2025Education.html" class="resource-link">Explore Canva Education →</a>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Felo AI Research Assistant</h3>
+                    <p>Learn about Japan's revolutionary AI research assistant that's transforming how we conduct research and analysis.</p>
+                    <a href="Felo AI - Japan's Revolutionary AI Research Assistant.html" class="resource-link">Discover Felo AI →</a>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Gamma AI Content Creation</h3>
+                    <p>Master the revolutionary content creation tool that's changing how we build presentations and documents.</p>
+                    <a href="Gamma AI - Revolutionary Content Creation Tool.html" class="resource-link">Learn Gamma AI →</a>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Google Gemini Guide</h3>
+                    <p>Complete interactive guide to Google's most advanced AI model and its practical applications.</p>
+                    <a href="Google Gemini Complete Interactive Guide.html" class="resource-link">Explore Gemini →</a>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Napkin AI Interactive Guide</h3>
+                    <p>Comprehensive guide to Napkin AI's visual storytelling and diagram creation capabilities.</p>
+                    <a href="Napkin AI Complete Interactive Guide.html" class="resource-link">Try Napkin AI →</a>
+                </div>
+
+                <div class="resource-card">
+                    <h3>NotebookLM Interactive Guide</h3>
+                    <p>Master Google's AI-powered research and note-taking tool for enhanced productivity and learning.</p>
+                    <a href="NotebookLM Interactive Guide.html" class="resource-link">Learn NotebookLM →</a>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 AI Training Resources. Empowering learning through artificial intelligence.</p>
+        </footer>
+    </div>
+</body>
+</html>

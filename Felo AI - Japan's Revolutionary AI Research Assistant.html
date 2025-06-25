@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Felo AI - Japan's Revolutionary AI Research Assistant</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      
+      body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+          line-height: 1.6;
+          color: #1a1a1a;
+          background: #fff;
+          overflow-x: hidden;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+      }
+      
+      header {
+          background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 30%, #45b7d1 60%, #96ceb4 100%);
+          color: white;
+          padding: 4rem 0;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      header::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.2) 0%, transparent 50%),
+                      radial-gradient(circle at 70% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+          animation: shimmer 4s ease-in-out infinite;
+      }
+      
+      @keyframes shimmer {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.8; }
+      }
+      
+      .header-content {
+          position: relative;
+          z-index: 2;
+      }
+      
+      .logo {
+          font-size: 4rem;
+          font-weight: 800;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          animation: slideInDown 1s ease;
+      }
+      
+      .logo-icon {
+          width: 80px;
+          height: 80px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2.5rem;
+          backdrop-filter: blur(10px);
+          border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+      
+      .tagline {
+          font-size: 1.6rem;
+          opacity: 0.95;
+          max-width: 800px;
+          margin: 0 auto 2rem;
+          animation: slideInUp 1s ease 0.3s both;
+          font-weight: 300;
+      }
+      
+      .subtitle {
+          font-size: 1.1rem;
+          opacity: 0.9;
+          margin-bottom: 2rem;
+          animation: fadeIn 1s ease 0.6s both;
+      }
+      
+      .hero-badges {
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+          margin-top: 2rem;
+          flex-wrap: wrap;
+          animation: fadeIn 1s ease 0.9s both;
+      }
+      
+      .badge {
+          background: rgba(255, 255, 255, 0.2);
+          padding: 8px 20px;
+          border-radius: 25px;
+          font-size: 0.9rem;
+          font-weight: 500;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      
+      .cta-section {
+          background: #f8f9fa;
+          padding: 3rem 0;
+          text-align: center;
+      }
+      
+      .cta-buttons {
+          display: flex;
+          gap: 1.5rem;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-top: 2rem;
+      }
+      
+      .cta-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 16px 32px;
+          font-size: 1.1rem;
+          font-weight: 600;
+          text-decoration: none;
+          border-radius: 50px;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+      }
+      
+      .cta-primary {
+          background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+          color: white;
+      }
+      
+      .cta-primary:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 12px 30px rgba(255, 107, 107, 0.3);
+      }
+      
+      .cta-secondary {
+          background: white;
+          color: #ff6b6b;
+          border-color: #ff6b6b;
+      }
+      
+      .cta-secondary:hover {
+          background: #fff5f5;
+          transform: translateY(-3px);
+      }
+      
+      .video-section {
+          padding: 5rem 0;
+          background: white;
+      }
+      
+      .video-container {
+          max-width: 900px;
+          margin: 0 auto;
+          text-align: center;
+      }
+      
+      .section-title {
+          font-size: 2.8rem;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+          font-weight: 700;
+      }
+      
+      .section-subtitle {
+          font-size: 1.3rem;
+          color: #666;
+          margin-bottom: 3rem;
+          font-weight: 300;
+      }
+      
+      .video-wrapper {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%;
+          margin: 2rem 0;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+          transition: transform 0.3s ease;
+      }
+      
+      .video-wrapper:hover {
+          transform: scale(1.02);
+      }
+      
+      .video-wrapper iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+      }
+      
+      .professor-intro {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 2rem;
+          border-radius: 15px;
+          margin: 2rem 0;
+          text-align: center;
+      }
+      
+      .professor-intro h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+      }
+      
+      .features-section {
+          padding: 5rem 0;
+          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+      
+      .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 2.5rem;
+          margin-top: 3rem;
+      }
+      
+      .feature-card {
+          background: white;
+          padding: 3rem 2.5rem;
+          border-radius: 20px;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+          transition: all 0.3s ease;
+          cursor: pointer;
+          border: 2px solid transparent;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .feature-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.1), transparent);
+          transition: left 0.6s ease;
+      }
+      
+      .feature-card:hover::before {
+          left: 100%;
+      }
+      
+      .feature-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+          border-color: #ff6b6b;
+      }
+      
+      .feature-icon {
+          font-size: 3.5rem;
+          margin-bottom: 1.5rem;
+          display: block;
+      }
+      
+      .feature-title {
+          font-size: 1.6rem;
+          margin-bottom: 1.5rem;
+          color: #1a1a1a;
+          font-weight: 700;
+      }
+      
+      .feature-description {
+          color: #666;
+          line-height: 1.8;
+          font-size: 1.1rem;
+      }
+      
+      .feature-list {
+          list-style: none;
+          margin-top: 1rem;
+      }
+      
+      .feature-list li {
+          padding: 0.5rem 0;
+          position: relative;
+          padding-left: 1.5rem;
+      }
+      
+      .feature-list li::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #4ecdc4;
+          font-weight: bold;
+      }
+      
+      .applications-section {
+          padding: 5rem 0;
+          background: white;
+      }
+      
+      .applications-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+          margin-top: 3rem;
+      }
+      
+      .application-card {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 2.5rem;
+          border-radius: 20px;
+          text-align: center;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .application-card::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          right: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+          animation: rotate 10s linear infinite;
+      }
+      
+      @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+      }
+      
+      .application-card:hover {
+          transform: translateY(-8px) scale(1.02);
+      }
+      
+      .application-icon {
+          font-size: 3rem;
+          margin-bottom: 1.5rem;
+          display: block;
+          position: relative;
+          z-index: 2;
+      }
+      
+      .application-title {
+          font-size: 1.4rem;
+          margin-bottom: 1rem;
+          font-weight: 600;
+          position: relative;
+          z-index: 2;
+      }
+      
+      .application-description {
+          font-size: 1rem;
+          line-height: 1.6;
+          position: relative;
+          z-index: 2;
+      }
+      
+      .tools-section {
+          padding: 5rem 0;
+          background: #f8f9fa;
+      }
+      
+      .tools-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
+          margin-top: 3rem;
+      }
+      
+      .tool-card {
+          background: white;
+          padding: 2rem;
+          border-radius: 15px;
+          text-align: center;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+      }
+      
+      .tool-card:hover {
+          transform: translateY(-5px);
+          border-color: #4ecdc4;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .tool-icon {
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+          display: block;
+      }
+      
+      .tool-title {
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+          font-weight: 600;
+      }
+      
+      .demo-section {
+          padding: 5rem 0;
+          background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+          color: white;
+      }
+      
+      .demo-container {
+          max-width: 800px;
+          margin: 0 auto;
+          text-align: center;
+      }
+      
+      .demo-title {
+          font-size: 2.5rem;
+          margin-bottom: 2rem;
+          font-weight: 700;
+      }
+      
+      .demo-interface {
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(15px);
+          padding: 3rem;
+          border-radius: 25px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .demo-input {
+          width: 100%;
+          padding: 1.5rem;
+          border: none;
+          border-radius: 15px;
+          font-size: 1.1rem;
+          margin-bottom: 1.5rem;
+          background: rgba(255, 255, 255, 0.9);
+      }
+      
+      .demo-button {
+          background: white;
+          color: #ff6b6b;
+          border: none;
+          padding: 15px 35px;
+          border-radius: 50px;
+          font-weight: 600;
+          cursor: pointer;
+          font-size: 1.1rem;
+          transition: all 0.3s ease;
+      }
+      
+      .demo-button:hover {
+          transform: scale(1.05);
+          box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+      }
+      
+      .demo-result {
+          margin-top: 2rem;
+          padding: 2rem;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 15px;
+          display: none;
+          text-align: left;
+      }
+      
+      .testimonial-section {
+          padding: 5rem 0;
+          background: white;
+      }
+      
+      .testimonial-card {
+          max-width: 800px;
+          margin: 0 auto;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 3rem;
+          border-radius: 20px;
+          text-align: center;
+          position: relative;
+      }
+      
+      .testimonial-quote {
+          font-size: 1.3rem;
+          font-style: italic;
+          margin-bottom: 2rem;
+          line-height: 1.8;
+      }
+      
+      .testimonial-author {
+          font-size: 1.1rem;
+          font-weight: 600;
+      }
+      
+      .testimonial-title {
+          font-size: 0.9rem;
+          opacity: 0.8;
+      }
+      
+      footer {
+          background: #1a1a1a;
+          color: white;
+          padding: 4rem 0;
+          text-align: center;
+      }
+      
+      .footer-content {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
+          margin-bottom: 2rem;
+      }
+      
+      .footer-section h4 {
+          margin-bottom: 1rem;
+          color: #ff6b6b;
+          font-size: 1.2rem;
+      }
+      
+      .footer-links {
+          list-style: none;
+      }
+      
+      .footer-links li {
+          margin-bottom: 0.5rem;
+      }
+      
+      .footer-links a {
+          color: #ccc;
+          text-decoration: none;
+          transition: color 0.3s ease;
+      }
+      
+      .footer-links a:hover {
+          color: #4ecdc4;
+      }
+      
+      .footer-bottom {
+          border-top: 1px solid #333;
+          padding-top: 2rem;
+          margin-top: 2rem;
+      }
+      
+      @keyframes slideInDown {
+          from {
+              opacity: 0;
+              transform: translateY(-50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      @keyframes slideInUp {
+          from {
+              opacity: 0;
+              transform: translateY(50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+      
+      @media (max-width: 768px) {
+          .logo {
+              font-size: 2.5rem;
+          }
+          
+          .tagline {
+              font-size: 1.3rem;
+          }
+          
+          .hero-badges {
+              flex-direction: column;
+              align-items: center;
+          }
+          
+          .features-grid,
+          .applications-grid,
+          .tools-grid {
+              grid-template-columns: 1fr;
+          }
+          
+          .cta-buttons {
+              flex-direction: column;
+              align-items: center;
+          }
+      }
+  </style>
+</head>
+<body>
+  <header>
+      <div class="container">
+          <div class="header-content">
+              <div class="logo">
+                  <div class="logo-icon">🇯🇵</div>
+                  Felo AI
+              </div>
+              <p class="tagline">Japan's Revolutionary Large-Scale AI Model for Advanced Research & Business Intelligence</p>
+              <p class="subtitle">Transforming how researchers, analysts, and businesses approach complex data analysis and decision-making</p>
+              <div class="hero-badges">
+                  <span class="badge">🌍 Multilingual Support</span>
+                  <span class="badge">🧠 Advanced Research</span>
+                  <span class="badge">📊 Business Intelligence</span>
+                  <span class="badge">🎥 Video Analysis</span>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <section class="cta-section">
+      <div class="container">
+          <h2>Experience the Future of AI-Powered Research</h2>
+          <div class="cta-buttons">
+              <a href="https://felo.ai" target="_blank" class="cta-button cta-primary">
+                  🚀 Try Felo AI Now
+              </a>
+              <a href="https://www.youtube.com/watch?v=cfPfMarZ5pg&t=43s" target="_blank" class="cta-button cta-secondary">
+                  📺 Watch Full Demo
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <section class="video-section">
+      <div class="container">
+          <div class="video-container">
+              <h2 class="section-title">Discover Felo AI's Capabilities</h2>
+              <p class="section-subtitle">Learn from Professor Dr. Kamal El Nagmi about this game-changing AI research tool</p>
+              
+              <div class="professor-intro">
+                  <h3>👨‍🏫 Presented by Professor Dr. Kamal El Nagmi</h3>
+                  <p>Expert introduction to Felo AI's revolutionary capabilities and practical applications in research and business</p>
+              </div>
+              
+              <div class="video-wrapper">
+                  <iframe 
+                      src="https://www.youtube.com/embed/cfPfMarZ5pg?start=43" 
+                      title="Felo AI - Japan's Large-Scale AI Model"
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen>
+                  </iframe>
+              </div>
+              <a href="https://www.youtube.com/watch?v=cfPfMarZ5pg&t=43s" target="_blank" class="cta-button cta-secondary">
+                  🔗 Open in YouTube
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <section class="features-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">Revolutionary AI Features</h2>
+              <p class="section-subtitle">Discover what makes Felo AI the ultimate research and business intelligence tool</p>
+          </div>
+          
+          <div class="features-grid">
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">🧠</span>
+                  <h3 class="feature-title">Comprehensive Research Assistant</h3>
+                  <p class="feature-description">Consolidates information from across the internet into a single, accessible platform for faster and more accurate research results.</p>
+                  <ul class="feature-list">
+                      <li>Internet-wide information consolidation</li>
+                      <li>Faster research processing</li>
+                      <li>Focus on critical analysis tasks</li>
+                      <li>Enhanced data discovery capabilities</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">🌍</span>
+                  <h3 class="feature-title">Multilingual Video Understanding</h3>
+                  <p class="feature-description">Analyze video content in any language, breaking down barriers for global research and content analysis.</p>
+                  <ul class="feature-list">
+                      <li>Any language video analysis</li>
+                      <li>Global content accessibility</li>
+                      <li>Cross-cultural research support</li>
+                      <li>Real-time translation capabilities</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">📊</span>
+                  <h3 class="feature-title">Versatile Business Applications</h3>
+                  <p class="feature-description">Support for diverse business needs from strategy development to market analysis and competitive intelligence.</p>
+                  <ul class="feature-list">
+                      <li>Business strategy & analysis</li>
+                      <li>Investment marketing strategy</li>
+                      <li>Industry analysis</li>
+                      <li>Market trend forecasting</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">🛠️</span>
+                  <h3 class="feature-title">Advanced Content Tools</h3>
+                  <p class="feature-description">Powerful tools for content analysis, visualization, and presentation creation with source validation.</p>
+                  <ul class="feature-list">
+                      <li>YouTube & website summarization</li>
+                      <li>Content source validation</li>
+                      <li>Text-to-visual conversion</li>
+                      <li>Mental maps & presentations</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">💼</span>
+                  <h3 class="feature-title">Business Intelligence Suite</h3>
+                  <p class="feature-description">Comprehensive business insights including company profiling, competitor analysis, and financial market research.</p>
+                  <ul class="feature-list">
+                      <li>Company profiling & analysis</li>
+                      <li>Competitive intelligence</li>
+                      <li>Financial market analysis</li>
+                      <li>Technology trend reports</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">📰</span>
+                  <h3 class="feature-title">Real-Time Information Processing</h3>
+                  <p class="feature-description">Stay updated with daily news summarization, feasibility studies, and real-time market trend analysis.</p>
+                  <ul class="feature-list">
+                      <li>Daily news summarization</li>
+                      <li>Feasibility studies</li>
+                      <li>Real-time market trends</li>
+                      <li>Innovation tracking</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="applications-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">Practical Applications</h2>
+              <p class="section-subtitle">See how Felo AI transforms workflows across different industries and use cases</p>
+          </div>
+          
+          <div class="applications-grid">
+              <div class="application-card">
+                  <span class="application-icon">🔬</span>
+                  <h3 class="application-title">Scientific Research</h3>
+                  <p class="application-description">Perfect for students, post-graduate researchers, and professionals across various scientific fields. Facilitates deep research and knowledge extraction with advanced AI capabilities.</p>
+              </div>
+              
+              <div class="application-card">
+                  <span class="application-icon">💡</span>
+                  <h3 class="application-title">Business Analysis</h3>
+                  <p class="application-description">Enables detailed analysis of business models, financial markets, and consulting reports. Supports competitive product analysis and strategic brand development.</p>
+              </div>
+              
+              <div class="application-card">
+                  <span class="application-icon">📈</span>
+                  <h3 class="application-title">Market Intelligence</h3>
+                  <p class="application-description">Advanced market trend analysis, competitor benchmarking, and investment strategy development with AI-powered insights and data visualization.</p>
+              </div>
+              
+              <div class="application-card">
+                  <span class="application-icon">🎓</span>
+                  <h3 class="application-title">Academic Research</h3>
+                  <p class="application-description">Comprehensive support for academic projects, thesis research, and scholarly publications with multilingual content analysis and source validation.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="tools-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">Advanced AI Tools</h2>
+              <p class="section-subtitle">Powerful features that set Felo AI apart from traditional research tools</p>
+          </div>
+          
+          <div class="tools-grid">
+              <div class="tool-card">
+                  <span class="tool-icon">📺</span>
+                  <h3 class="tool-title">Video Summarization</h3>
+                  <p>Extract key insights from YouTube videos and multimedia content in any language.</p>
+              </div>
+              
+              <div class="tool-card">
+                  <span class="tool-icon">🌐</span>
+                  <h3 class="tool-title">Website Analysis</h3>
+                  <p>Comprehensive website content analysis and information extraction with source validation.</p>
+              </div>
+              
+              <div class="tool-card">
+                  <span class="tool-icon">🎨</span>
+                  <h3 class="tool-title">Visual Data Conversion</h3>
+                  <p>Transform text and data into compelling visuals, charts, and graphic representations.</p>
+              </div>
+              
+              <div class="tool-card">
+                  <span class="tool-icon">🗺️</span>
+                  <h3 class="tool-title">Mind Mapping</h3>
+                  <p>Create interactive mental maps and structured presentations from complex information.</p>
+              </div>
+              
+              <div class="tool-card">
+                  <span class="tool-icon">✅</span>
+                  <h3 class="tool-title">Source Validation</h3>
+                  <p>Verify and validate content sources for accurate and reliable research results.</p>
+              </div>
+              
+              <div class="tool-card">
+                  <span class="tool-icon">📊</span>
+                  <h3 class="tool-title">Data Analytics</h3>
+                  <p>Advanced data analysis and pattern recognition for business intelligence and research.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="demo-section">
+      <div class="container">
+          <div class="demo-container">
+              <h2 class="demo-title">Experience Felo AI's Power</h2>
+              <div class="demo-interface">
+                  <input type="text" class="demo-input" id="researchInput" placeholder="Enter your research topic or business question...">
+                  <button class="demo-button" onclick="generateResearchPlan()">🔍 Generate AI Research Plan</button>
+                  <div class="demo-result" id="demoResult">
+                      <h4>🧠 AI-Generated Research Strategy:</h4>
+                      <div id="researchPlan"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="testimonial-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">Expert Endorsement</h2>
+          </div>
+          
+          <div class="testimonial-card">
+              <p class="testimonial-quote">
+                  "Felo AI is a transformative tool for researchers an

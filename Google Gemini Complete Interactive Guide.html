@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Gemini - Your Ultimate AI Assistant</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      
+      body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+          line-height: 1.6;
+          color: #202124;
+          background: #fff;
+          overflow-x: hidden;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+      }
+      
+      header {
+          background: linear-gradient(135deg, #4285f4 0%, #34a853 30%, #fbbc04 60%, #ea4335 100%);
+          color: white;
+          padding: 4rem 0;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      header::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+          animation: float 6s ease-in-out infinite;
+      }
+      
+      @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+      }
+      
+      .header-content {
+          position: relative;
+          z-index: 2;
+      }
+      
+      .logo {
+          font-size: 4rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          animation: slideInDown 1s ease;
+      }
+      
+      .logo-icon {
+          width: 80px;
+          height: 80px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2.5rem;
+          backdrop-filter: blur(10px);
+      }
+      
+      .tagline {
+          font-size: 1.5rem;
+          opacity: 0.95;
+          max-width: 700px;
+          margin: 0 auto 2rem;
+          animation: slideInUp 1s ease 0.3s both;
+      }
+      
+      .hero-stats {
+          display: flex;
+          justify-content: center;
+          gap: 3rem;
+          margin-top: 2rem;
+          animation: fadeIn 1s ease 0.6s both;
+      }
+      
+      .stat {
+          text-align: center;
+      }
+      
+      .stat-number {
+          font-size: 2rem;
+          font-weight: bold;
+          display: block;
+      }
+      
+      .stat-label {
+          font-size: 0.9rem;
+          opacity: 0.8;
+      }
+      
+      .cta-section {
+          background: #f8f9fa;
+          padding: 3rem 0;
+          text-align: center;
+      }
+      
+      .cta-buttons {
+          display: flex;
+          gap: 1rem;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-top: 2rem;
+      }
+      
+      .cta-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 16px 32px;
+          font-size: 1.1rem;
+          font-weight: 600;
+          text-decoration: none;
+          border-radius: 50px;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+      }
+      
+      .cta-primary {
+          background: #4285f4;
+          color: white;
+      }
+      
+      .cta-primary:hover {
+          background: #3367d6;
+          transform: translateY(-3px);
+          box-shadow: 0 10px 25px rgba(66, 133, 244, 0.3);
+      }
+      
+      .cta-secondary {
+          background: white;
+          color: #4285f4;
+          border-color: #4285f4;
+      }
+      
+      .cta-secondary:hover {
+          background: #f8f9fa;
+          transform: translateY(-3px);
+      }
+      
+      .video-section {
+          padding: 4rem 0;
+          background: white;
+      }
+      
+      .video-container {
+          max-width: 900px;
+          margin: 0 auto;
+          text-align: center;
+      }
+      
+      .section-title {
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+          color: #202124;
+      }
+      
+      .section-subtitle {
+          font-size: 1.2rem;
+          color: #5f6368;
+          margin-bottom: 3rem;
+      }
+      
+      .video-wrapper {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%;
+          margin: 2rem 0;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+          transition: transform 0.3s ease;
+      }
+      
+      .video-wrapper:hover {
+          transform: scale(1.02);
+      }
+      
+      .video-wrapper iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+      }
+      
+      .features-section {
+          padding: 5rem 0;
+          background: linear-gradient(135deg, #f8f9fa 0%, #e8f0fe 100%);
+      }
+      
+      .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 2rem;
+          margin-top: 3rem;
+      }
+      
+      .feature-card {
+          background: white;
+          padding: 2.5rem;
+          border-radius: 16px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+          transition: all 0.3s ease;
+          cursor: pointer;
+          border: 2px solid transparent;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .feature-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(66, 133, 244, 0.1), transparent);
+          transition: left 0.5s ease;
+      }
+      
+      .feature-card:hover::before {
+          left: 100%;
+      }
+      
+      .feature-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+          border-color: #4285f4;
+      }
+      
+      .feature-icon {
+          font-size: 3rem;
+          margin-bottom: 1.5rem;
+          display: block;
+      }
+      
+      .feature-title {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          color: #202124;
+          font-weight: 600;
+      }
+      
+      .feature-description {
+          color: #5f6368;
+          line-height: 1.7;
+      }
+      
+      .timeline-section {
+          padding: 5rem 0;
+          background: white;
+      }
+      
+      .timeline {
+          max-width: 1000px;
+          margin: 0 auto;
+          position: relative;
+      }
+      
+      .timeline::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 3px;
+          height: 100%;
+          background: linear-gradient(to bottom, #4285f4, #34a853, #fbbc04, #ea4335);
+          border-radius: 2px;
+      }
+      
+      .timeline-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 4rem;
+          position: relative;
+      }
+      
+      .timeline-item:nth-child(even) {
+          flex-direction: row-reverse;
+      }
+      
+      .timeline-content {
+          flex: 1;
+          padding: 2.5rem;
+          background: #f8f9fa;
+          border-radius: 16px;
+          margin: 0 3rem;
+          position: relative;
+          border: 2px solid transparent;
+          transition: all 0.3s ease;
+      }
+      
+      .timeline-content:hover {
+          border-color: #4285f4;
+          transform: scale(1.02);
+          background: white;
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .timeline-time {
+          position: absolute;
+          top: -10px;
+          right: 20px;
+          background: #4285f4;
+          color: white;
+          padding: 6px 16px;
+          border-radius: 25px;
+          font-size: 0.9rem;
+          font-weight: 600;
+      }
+      
+      .timeline-dot {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 24px;
+          height: 24px;
+          background: #4285f4;
+          border-radius: 50%;
+          border: 6px solid white;
+          box-shadow: 0 0 0 6px #e3f2fd;
+          z-index: 2;
+      }
+      
+      .integrations-section {
+          padding: 5rem 0;
+          background: #f8f9fa;
+      }
+      
+      .integrations-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
+          margin-top: 3rem;
+      }
+      
+      .integration-card {
+          background: white;
+          padding: 2rem;
+          border-radius: 16px;
+          text-align: center;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+      }
+      
+      .integration-card:hover {
+          transform: translateY(-5px);
+          border-color: #4285f4;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+      
+      .integration-icon {
+          font-size: 3rem;
+          margin-bottom: 1rem;
+          display: block;
+      }
+      
+      .integration-title {
+          font-size: 1.3rem;
+          margin-bottom: 1rem;
+          color: #202124;
+          font-weight: 600;
+      }
+      
+      .demo-section {
+          padding: 5rem 0;
+          background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+          color: white;
+      }
+      
+      .demo-container {
+          max-width: 800px;
+          margin: 0 auto;
+          text-align: center;
+      }
+      
+      .demo-title {
+          font-size: 2.5rem;
+          margin-bottom: 2rem;
+      }
+      
+      .demo-interface {
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(15px);
+          padding: 3rem;
+          border-radius: 20px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .demo-input {
+          width: 100%;
+          padding: 1.2rem;
+          border: none;
+          border-radius: 12px;
+          font-size: 1.1rem;
+          margin-bottom: 1.5rem;
+          background: rgba(255, 255, 255, 0.9);
+      }
+      
+      .demo-button {
+          background: white;
+          color: #4285f4;
+          border: none;
+          padding: 14px 32px;
+          border-radius: 50px;
+          font-weight: 600;
+          cursor: pointer;
+          font-size: 1.1rem;
+          transition: all 0.3s ease;
+      }
+      
+      .demo-button:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+      }
+      
+      .demo-result {
+          margin-top: 2rem;
+          padding: 2rem;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 12px;
+          display: none;
+          text-align: left;
+      }
+      
+      .pricing-section {
+          padding: 5rem 0;
+          background: white;
+      }
+      
+      .pricing-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+          margin-top: 3rem;
+      }
+      
+      .pricing-card {
+          background: #f8f9fa;
+          padding: 3rem 2rem;
+          border-radius: 16px;
+          text-align: center;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+          position: relative;
+      }
+      
+      .pricing-card.featured {
+          background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+          color: white;
+          transform: scale(1.05);
+      }
+      
+      .pricing-card.featured::before {
+          content: 'Most Popular';
+          position: absolute;
+          top: -12px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #ea4335;
+          color: white;
+          padding: 6px 20px;
+          border-radius: 20px;
+          font-size: 0.9rem;
+          font-weight: 600;
+      }
+      
+      .pricing-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .pricing-title {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          font-weight: 600;
+      }
+      
+      .pricing-price {
+          font-size: 2.5rem;
+          font-weight: bold;
+          margin-bottom: 2rem;
+      }
+      
+      .pricing-features {
+          list-style: none;
+          margin-bottom: 2rem;
+      }
+      
+      .pricing-features li {
+          padding: 0.5rem 0;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      
+      .pricing-card.featured .pricing-features li {
+          border-bottom-color: rgba(255, 255, 255, 0.2);
+      }
+      
+      footer {
+          background: #202124;
+          color: white;
+          padding: 3rem 0;
+          text-align: center;
+      }
+      
+      .footer-content {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
+          margin-bottom: 2rem;
+      }
+      
+      .footer-section h4 {
+          margin-bottom: 1rem;
+          color: #8ab4f8;
+      }
+      
+      .footer-links {
+          list-style: none;
+      }
+      
+      .footer-links a {
+          color: #aaa;
+          text-decoration: none;
+          transition: color 0.3s ease;
+      }
+      
+      .footer-links a:hover {
+          color: #8ab4f8;
+      }
+      
+      @keyframes slideInDown {
+          from {
+              opacity: 0;
+              transform: translateY(-50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      @keyframes slideInUp {
+          from {
+              opacity: 0;
+              transform: translateY(50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+      
+      @media (max-width: 768px) {
+          .timeline::before {
+              left: 30px;
+          }
+          
+          .timeline-item {
+              flex-direction: column !important;
+              padding-left: 60px;
+          }
+          
+          .timeline-dot {
+              left: 30px;
+          }
+          
+          .timeline-content {
+              margin: 1rem 0 0 0;
+          }
+          
+          .logo {
+              font-size: 2.5rem;
+          }
+          
+          .hero-stats {
+              flex-direction: column;
+              gap: 1rem;
+          }
+          
+          .features-grid,
+          .integrations-grid,
+          .pricing-grid {
+              grid-template-columns: 1fr;
+          }
+      }
+  </style>
+</head>
+<body>
+  <header>
+      <div class="container">
+          <div class="header-content">
+              <div class="logo">
+                  <div class="logo-icon">🤖</div>
+                  Google Gemini
+              </div>
+              <p class="tagline">The AI assistant that seamlessly integrates with your Google Workspace to supercharge your productivity</p>
+              <div class="hero-stats">
+                  <div class="stat">
+                      <span class="stat-number">100M+</span>
+                      <span class="stat-label">Active Users</span>
+                  </div>
+                  <div class="stat">
+                      <span class="stat-number">50+</span>
+                      <span class="stat-label">Languages</span>
+                  </div>
+                  <div class="stat">
+                      <span class="stat-number">24/7</span>
+                      <span class="stat-label">Availability</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <section class="cta-section">
+      <div class="container">
+          <h2>Experience the Future of AI Assistance</h2>
+          <div class="cta-buttons">
+              <a href="https://gemini.google.com" target="_blank" class="cta-button cta-primary">
+                  🚀 Try Gemini Free
+              </a>
+              <a href="https://www.youtube.com/watch?v=8aRJYpExTfs" target="_blank" class="cta-button cta-secondary">
+                  📺 Watch Full Tutorial
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <section class="video-section">
+      <div class="container">
+          <div class="video-container">
+              <h2 class="section-title">Master Google Gemini in 7 Minutes</h2>
+              <p class="section-subtitle">Learn how to become a power user with this comprehensive tutorial</p>
+              <div class="video-wrapper">
+                  <iframe 
+                      src="https://www.youtube.com/embed/8aRJYpExTfs" 
+                      title="Google Gemini Tutorial - Become A Power User in 7 min"
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen>
+                  </iframe>
+              </div>
+              <a href="https://www.youtube.com/watch?v=8aRJYpExTfs" target="_blank" class="cta-button cta-secondary">
+                  🔗 Open in YouTube
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <section class="features-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">Why Choose Google Gemini?</h2>
+              <p class="section-subtitle">Discover the unique advantages that set Gemini apart from other AI assistants</p>
+          </div>
+          
+          <div class="features-grid">
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">⚡</span>
+                  <h3 class="feature-title">Lightning Fast & Free</h3>
+                  <p class="feature-description">Unlike other AI assistants, Gemini offers blazing-fast responses completely free. Get instant answers without subscription barriers or usage limits.</p>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">🔗</span>
+                  <h3 class="feature-title">Seamless Google Integration</h3>
+                  <p class="feature-description">Native integration with Gmail, Google Drive, Calendar, and Search. Access all your Google services through one intelligent interface.</p>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">📊</span>
+                  <h3 class="feature-title">Advanced Data Processing</h3>
+                  <p class="feature-description">Extract data from tables, analyze documents, and process large files with simple commands. Perfect for research and data analysis tasks.</p>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">✍️</span>
+                  <h3 class="feature-title">Creative Writing Assistant</h3>
+                  <p class="feature-description">Generate stories, improve performance reviews, draft emails, and create content with AI-powered writing assistance and multiple model options.</p>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">🔍</span>
+                  <h3 class="feature-title">Smart Research Capabilities</h3>
+                  <p class="feature-description">Get answers with source verification, fact-checking tools, and multiple model options including experimental thinking models for complex queries.</p>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">🎯</span>
+                  <h3 class="feature-title">Context-Aware Responses</h3>
+                  <p class="feature-description">Gemini understands your Google Workspace context to provide personalized recommendations and relevant answers based on your data.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="timeline-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">Tutorial Highlights & Key Features</h2>
+              <p class="section-subtitle">Step-by-step breakdown of Gemini's most powerful capabilities</p>
+          </div>
+          
+          <div class="timeline">
+              <div class="timeline-item">
+                  <div class="timeline-content">
+                      <span class="timeline-time">00:00</span>
+                      <h3>Getting Started with Gemini</h3>
+                      <p>Learn the basics of Google's AI assistant and discover what makes it different from other AI tools. Gemini offers seamless integration with Gmail, Google Drive, and Google Search with a simple, intuitive interface.</p>
+                      <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                          <li>Simple text-based interface for easy interaction</li>
+                          <li>Left sidebar access to features and settings</li>
+                          <li>Privacy note: Content may be reviewed by Google moderators</li>
+                      </ul>
+                  </div>
+                  <div class="timeline-dot"></div>
+              </div>
+              
+              <div class="timeline-item">
+                  <div class="timeline-content">
+                      <span class="timeline-time">03:34</span>
+                      <h3>Knowledge Search & Creative Writing</h3>
+                      <p>Master Gemini's dual capabilities for information retrieval and content creation. Learn how to verify sources and use creative writing features effectively.</p>
+                      <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                          <li>Click arrows to view information sources and footnotes</li>
+                          <li>Verify answers using built-in fact-checking tools</li>
+                          <li>Generate stories and creative content with AI assistance</li>
+                      </ul>
+                  </div>
+                  <div class="timeline-dot"></div>
+              </div>
+              
+              <div class="timeline-item">
+                  <div class="timeline-content">
+                      <span class="timeline-time">07:04</span>
+                      <h3>Data Extraction & Google Workspace Extensions</h3>
+                      <p>Unlock powerful data processing capabilities and enable Google Workspace integration for enhanced productivity and personalized responses.</p>
+                      <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                          <li>Extract table data with simple commands</li>
+                          <li>Enable extensions for email, documents, and calendar access</li>
+                          <li>Quick Gmail search and restaurant recommendations</li>
+                      </ul>
+                  </div>
+                  <div class="timeline-dot"></div>
+              </div>
+              
+              <div class="timeline-item">
+                  <div class="timeline-content">
+                      <span class="timeline-time">10:41</span>
+                      <h3>Document Summaries & Calendar Management</h3>
+                      <p>Streamline your workflow with automatic document summaries, smart calendar scheduling, and YouTube video content extraction.</p>
+                      <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                          <li>Quick Google Drive document summaries</li>
+                          <li>Automated meeting scheduling (note: may need manual adjustments)</li>
+                          <li>Extract key information from YouTube videos</li>
+                      </ul>
+                  </div>
+                  <div class="timeline-dot"></div>
+              </div>
+              
+              <div class="timeline-item">
+                  <div class="timeline-content">
+                      <span class="timeline-time">14:07</span>
+                      <h3>Email Drafting & File Management</h3>
+                      <p>Enhance your communication with AI-powered email drafting and efficient Google Drive file management capabilities.</p>
+                      <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                          <li>Auto-draft emails with insertion options</li>
+                          <li>Polish existing drafts with magic pencil tool</li>
+                          <li>Summarize entire folders and query specific files</li>
+                      </ul>
+                  </div>
+                  <div class="timeline-dot"></div>
+              </div>
+              
+              <div class="timeline-item">
+                  <div class="timeline-content">
+                      <span class="timeline-time">17:39</span>
+                      <h3>Research Collaboration & Model Selection</h3>
+                      <p>Leverage Gemini for complex research projects and learn how to choose the right AI model for your specific needs.</p>
+                      <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                          <li>Extract principles for organizational change research</li>
+                          <li>Insert AI responses directly into documents</li>
+                          <li>Choose between different models including experimental options</li>
+                      </ul>
+                  </div>
+                  <div class="timeline-dot"></div>
+              </div>
+              
+              <div class="timeline-item">
+                  <div class="timeline-content">
+                      <span class="timeline-time">21:14</span>
+                      <h3>Advanced Features & Pro Capabilities</h3>
+                      <p>Explore premium features including advanced research planning, large data processing, and code refactoring capabilities.</p>
+                      <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                          <li>Pro experimental model with superior quality</li>
+                          <li>Generate comprehensive research plans</li>
+                          <li>Process large code files for refactoring</li>
+                          <li>Handle massive datasets with advanced subscription</li>
+                      </ul>
+                  </div>
+                  <div class="timeline-dot"></div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="integrations-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">Seamless Google Workspace Integration</h2>
+              <p class="section-subtitle">Connect all your favorite Google services in one intelligent interface</p>
+          </div>
+          
+          <div class="integrations-grid">
+              <div class="integration-card">
+                  <span class="integration-icon">📧</span>
+                  <h3 class="integration-title">Gmail</h3>
+                  <p>Draft, edit, and search emails with AI assistance. Find relevant messages instantly and improve your communication.</p>
+              </div>
+              
+              <div class="integration-card">
+                  <span class="integration-icon">📁</span>
+                  <h3 class="integration-title">Google Drive</h3>
+                  <p>Summarize documents
