@@ -6,56 +6,64 @@
 
     <!-- Main Index Page -->
     <url>
-        <loc>https://red-hill-0be9ee200.1.azurestaticapps.net/index.html</loc>
-        <lastmod>2025-01-04</lastmod>
+        <loc>https://alliu60.github.io/Training/</loc>
+        <lastmod>2025-01-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
 
     <!-- Canva 2025 Education -->
     <url>
-        <loc>https://red-hill-0be9ee200.1.azurestaticapps.net/Canva2025Education.html</loc>
-        <lastmod>2025-01-04</lastmod>
+        <loc>https://alliu60.github.io/Training/Canva2025Education.html</loc>
+        <lastmod>2025-01-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <!-- Felo AI Research Assistant -->
     <url>
-        <loc>https://red-hill-0be9ee200.1.azurestaticapps.net/FeloAI-JapanRevolutionaryAIResearchAssistant.html</loc>
-        <lastmod>2025-01-04</lastmod>
+        <loc>https://alliu60.github.io/Training/FeloAI.html</loc>
+        <lastmod>2025-01-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <!-- Gamma AI Content Creation Tool -->
     <url>
-        <loc>https://red-hill-0be9ee200.1.azurestaticapps.net/GammaAI-RevolutionaryContentCreationTool.html</loc>
-        <lastmod>2025-01-04</lastmod>
+        <loc>https://alliu60.github.io/Training/GammaAI.html</loc>
+        <lastmod>2025-01-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- Google Gemini Complete Interactive Guide -->
+    <!-- Google Gemini 2.5 Guide -->
     <url>
-        <loc>https://red-hill-0be9ee200.1.azurestaticapps.net/GoogleGeminiCompleteInteractiveGuide.html</loc>
-        <lastmod>2025-01-04</lastmod>
+        <loc>https://alliu60.github.io/Training/Gemini2_5.html</loc>
+        <lastmod>2025-01-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- Napkin AI Complete Interactive Guide -->
+    <!-- Grok AI Advanced Features -->
     <url>
-        <loc>https://red-hill-0be9ee200.1.azurestaticapps.net/NapkinAICompleteInteractiveGuide.html</loc>
-        <lastmod>2025-01-04</lastmod>
+        <loc>https://alliu60.github.io/Training/GrokAI.html</loc>
+        <lastmod>2025-01-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- NotebookLM Interactive Guide -->
+    <!-- Napkin AI Visualization Guide -->
     <url>
-        <loc>https://red-hill-0be9ee200.1.azurestaticapps.net/NotebookLMInteractiveGuide.html</loc>
-        <lastmod>2025-01-04</lastmod>
+        <loc>https://alliu60.github.io/Training/NapkinAI.html</loc>
+        <lastmod>2025-01-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- NotebookLM Learning Guide -->
+    <url>
+        <loc>https://alliu60.github.io/Training/NotebookLM.html</loc>
+        <lastmod>2025-01-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

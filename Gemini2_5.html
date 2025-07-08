@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini 2.5 Pro - The Ultimate AI Assistant Revolution</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      
+      body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+          line-height: 1.6;
+          color: #1a1a1a;
+          background: #fff;
+          overflow-x: hidden;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+      }
+      
+      header {
+          background: linear-gradient(135deg, #4285f4 0%, #ea4335 25%, #fbbc04 50%, #34a853 75%, #9aa0a6 100%);
+          color: white;
+          padding: 5rem 0;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      header::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+              radial-gradient(circle at 25% 25%, rgba(255,255,255,0.15) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%),
+              linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%);
+          animation: shimmer 8s ease-in-out infinite;
+      }
+      
+      @keyframes shimmer {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+      }
+      
+      .header-content {
+          position: relative;
+          z-index: 2;
+      }
+      
+      .logo {
+          font-size: 4.5rem;
+          font-weight: 900;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          animation: slideInDown 1s ease;
+          letter-spacing: -2px;
+      }
+      
+      .logo-icon {
+          width: 90px;
+          height: 90px;
+          background: rgba(255, 255, 255, 0.25);
+          border-radius: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 3rem;
+          backdrop-filter: blur(15px);
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+      
+      .tagline {
+          font-size: 1.8rem;
+          opacity: 0.95;
+          max-width: 900px;
+          margin: 0 auto 1.5rem;
+          animation: slideInUp 1s ease 0.3s both;
+          font-weight: 300;
+          line-height: 1.4;
+      }
+      
+      .subtitle {
+          font-size: 1.2rem;
+          opacity: 0.9;
+          margin-bottom: 3rem;
+          animation: fadeIn 1s ease 0.6s both;
+          max-width: 700px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      
+      .hero-features {
+          display: flex;
+          justify-content: center;
+          gap: 2rem;
+          margin-top: 2rem;
+          flex-wrap: wrap;
+          animation: fadeIn 1s ease 0.9s both;
+      }
+      
+      .hero-feature {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 1.5rem 2rem;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          text-align: center;
+          transition: all 0.3s ease;
+      }
+      
+      .hero-feature:hover {
+          background: rgba(255, 255, 255, 0.2);
+          transform: translateY(-5px);
+      }
+      
+      .hero-feature-icon {
+          font-size: 2rem;
+          display: block;
+          margin-bottom: 0.5rem;
+      }
+      
+      .hero-feature-text {
+          font-size: 1rem;
+          font-weight: 500;
+      }
+      
+      .cta-section {
+          background: #f8f9fa;
+          padding: 4rem 0;
+          text-align: center;
+      }
+      
+      .cta-title {
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+          font-weight: 700;
+      }
+      
+      .cta-subtitle {
+          font-size: 1.3rem;
+          color: #666;
+          margin-bottom: 3rem;
+      }
+      
+      .cta-buttons {
+          display: flex;
+          gap: 2rem;
+          justify-content: center;
+          flex-wrap: wrap;
+      }
+      
+      .cta-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.8rem;
+          padding: 18px 36px;
+          font-size: 1.2rem;
+          font-weight: 600;
+          text-decoration: none;
+          border-radius: 50px;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .cta-button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s ease;
+      }
+      
+      .cta-button:hover::before {
+          left: 100%;
+      }
+      
+      .cta-primary {
+          background: linear-gradient(135deg, #4285f4, #ea4335);
+          color: white;
+      }
+      
+      .cta-primary:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 15px 35px rgba(66, 133, 244, 0.4);
+      }
+      
+      .cta-secondary {
+          background: white;
+          color: #4285f4;
+          border-color: #4285f4;
+      }
+      
+      .cta-secondary:hover {
+          background: #f8f9ff;
+          transform: translateY(-3px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      
+      .video-section {
+          padding: 6rem 0;
+          background: white;
+      }
+      
+      .video-container {
+          max-width: 1000px;
+          margin: 0 auto;
+          text-align: center;
+      }
+      
+      .section-title {
+          font-size: 3rem;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+          font-weight: 800;
+      }
+      
+      .section-subtitle {
+          font-size: 1.4rem;
+          color: #666;
+          margin-bottom: 3rem;
+          font-weight: 300;
+      }
+      
+      .video-intro {
+          background: linear-gradient(135deg, #4285f4 0%, #ea4335 100%);
+          color: white;
+          padding: 2.5rem;
+          border-radius: 20px;
+          margin: 2rem 0;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .video-intro::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          right: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+          animation: rotate 15s linear infinite;
+      }
+      
+      @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+      }
+      
+      .video-intro h3 {
+          font-size: 1.6rem;
+          margin-bottom: 1rem;
+          position: relative;
+          z-index: 2;
+      }
+      
+      .video-intro p {
+          position: relative;
+          z-index: 2;
+          font-size: 1.1rem;
+      }
+      
+      .video-wrapper {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%;
+          margin: 3rem 0;
+          border-radius: 25px;
+          overflow: hidden;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+          transition: transform 0.3s ease;
+      }
+      
+      .video-wrapper:hover {
+          transform: scale(1.02);
+      }
+      
+      .video-wrapper iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+      }
+      
+      .features-section {
+          padding: 6rem 0;
+          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+      
+      .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+          gap: 3rem;
+          margin-top: 4rem;
+      }
+      
+      .feature-card {
+          background: white;
+          padding: 3.5rem 3rem;
+          border-radius: 25px;
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+          transition: all 0.4s ease;
+          cursor: pointer;
+          border: 2px solid transparent;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .feature-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(66, 133, 244, 0.1), transparent);
+          transition: left 0.6s ease;
+      }
+      
+      .feature-card:hover::before {
+          left: 100%;
+      }
+      
+      .feature-card:hover {
+          transform: translateY(-12px);
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+          border-color: #4285f4;
+      }
+      
+      .feature-icon {
+          display: inline-block;
+          background: linear-gradient(135deg, #4285f4, #ea4335);
+          color: white;
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          font-size: 2rem;
+          text-align: center;
+          line-height: 70px;
+          margin-bottom: 2rem;
+      }
+      
+      .feature-title {
+          font-size: 1.8rem;
+          margin-bottom: 1.5rem;
+          color: #1a1a1a;
+          font-weight: 700;
+      }
+      
+      .feature-description {
+          color: #666;
+          line-height: 1.8;
+          font-size: 1.1rem;
+          margin-bottom: 2rem;
+      }
+      
+      .feature-list {
+          list-style: none;
+      }
+      
+      .feature-list li {
+          padding: 0.8rem 0;
+          position: relative;
+          padding-left: 2rem;
+          color: #555;
+      }
+      
+      .feature-list li::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #34a853;
+          font-weight: bold;
+          font-size: 1.2rem;
+      }
+      
+      .gems-section {
+          padding: 6rem 0;
+          background: linear-gradient(135deg, #4285f4 0%, #ea4335 100%);
+          color: white;
+      }
+      
+      .gems-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2.5rem;
+          margin-top: 4rem;
+      }
+      
+      .gem-card {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2.5rem;
+          border-radius: 20px;
+          backdrop-filter: blur(15px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          transition: all 0.3s ease;
+          text-align: center;
+      }
+      
+      .gem-card:hover {
+          transform: translateY(-8px);
+          background: rgba(255, 255, 255, 0.15);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      
+      .gem-icon {
+          font-size: 3.5rem;
+          margin-bottom: 1.5rem;
+          display: block;
+      }
+      
+      .gem-title {
+          font-size: 1.4rem;
+          margin-bottom: 1rem;
+          font-weight: 600;
+      }
+      
+      .gem-description {
+          font-size: 1rem;
+          line-height: 1.6;
+          opacity: 0.9;
+      }
+      
+      .tips-section {
+          padding: 6rem 0;
+          background: white;
+      }
+      
+      .tips-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 2.5rem;
+          margin-top: 4rem;
+      }
+      
+      .tip-card {
+          background: #f8f9fa;
+          padding: 3rem 2.5rem;
+          border-radius: 20px;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+      }
+      
+      .tip-card:hover {
+          transform: translateY(-8px);
+          border-color: #4285f4;
+          background: white;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      
+      .tip-number {
+          display: inline-block;
+          background: linear-gradient(135deg, #4285f4, #ea4335);
+          color: white;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          font-size: 1.5rem;
+          font-weight: bold;
+          text-align: center;
+          line-height: 50px;
+          margin-bottom: 1.5rem;
+      }
+      
+      .tip-title {
+          font-size: 1.4rem;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+          font-weight: 600;
+      }
+      
+      .tip-description {
+          color: #666;
+          font-size: 1rem;
+          line-height: 1.6;
+      }
+      
+      .comparison-section {
+          padding: 6rem 0;
+          background: #f8f9fa;
+      }
+      
+      .comparison-card {
+          max-width: 900px;
+          margin: 0 auto;
+          background: white;
+          padding: 4rem;
+          border-radius: 25px;
+          box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+          text-align: center;
+      }
+      
+      .vs-badge {
+          display: inline-block;
+          background: linear-gradient(135deg, #4285f4, #ea4335);
+          color: white;
+          padding: 1rem 2rem;
+          border-radius: 50px;
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-bottom: 2rem;
+      }
+      
+      .comparison-text {
+          font-size: 1.3rem;
+          color: #1a1a1a;
+          line-height: 1.8;
+          font-style: italic;
+          margin-bottom: 2rem;
+      }
+      
+      .sponsor-section {
+          padding: 4rem 0;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          text-align: center;
+      }
+      
+      .sponsor-card {
+          max-width: 800px;
+          margin: 0 auto;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 3rem;
+          border-radius: 20px;
+          backdrop-filter: blur(15px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .sponsor-title {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+          font-weight: 700;
+      }
+      
+      .sponsor-description {
+          font-size: 1.2rem;
+          margin-bottom: 2rem;
+          opacity: 0.9;
+      }
+      
+      .sponsor-features {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.5rem;
+          margin: 2rem 0;
+      }
+      
+      .sponsor-feature {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 1.5rem;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+      }
+      
+      .sponsor-feature-icon {
+          font-size: 2rem;
+          margin-bottom: 0.5rem;
+          display: block;
+      }
+      
+      .sponsor-feature-text {
+          font-size: 0.9rem;
+          opacity: 0.9;
+      }
+      
+      footer {
+          background: #1a1a1a;
+          color: white;
+          padding: 5rem 0 2rem;
+      }
+      
+      .footer-content {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 3rem;
+          margin-bottom: 3rem;
+      }
+      
+      .footer-section h4 {
+          margin-bottom: 1.5rem;
+          color: #4285f4;
+          font-size: 1.3rem;
+          font-weight: 600;
+      }
+      
+      .footer-links {
+          list-style: none;
+      }
+      
+      .footer-links li {
+          margin-bottom: 0.8rem;
+      }
+      
+      .footer-links a {
+          color: #ccc;
+          text-decoration: none;
+          transition: color 0.3s ease;
+      }
+      
+      .footer-links a:hover {
+          color: #4285f4;
+      }
+      
+      .footer-bottom {
+          border-top: 1px solid #333;
+          padding-top: 2rem;
+          text-align: center;
+          color: #999;
+      }
+      
+      @keyframes slideInDown {
+          from {
+              opacity: 0;
+              transform: translateY(-50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      @keyframes slideInUp {
+          from {
+              opacity: 0;
+              transform: translateY(50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+      
+      @media (max-width: 768px) {
+          .logo {
+              font-size: 3rem;
+              flex-direction: column;
+              gap: 0.5rem;
+          }
+          
+          .logo-icon {
+              width: 70px;
+              height: 70px;
+              font-size: 2rem;
+          }
+          
+          .tagline {
+              font-size: 1.4rem;
+          }
+          
+          .hero-features {
+              flex-direction: column;
+              gap: 1rem;
+          }
+          
+          .features-grid,
+          .gems-grid,
+          .tips-grid {
+              grid-template-columns: 1fr;
+          }
+          
+          .cta-buttons {
+              flex-direction: column;
+              align-items: center;
+          }
+          
+          .section-title {
+              font-size: 2.2rem;
+          }
+          
+          .comparison-card,
+          .sponsor-card {
+              padding: 2rem;
+          }
+      }
+  </style>
+</head>
+<body>
+  <!-- Back to Home Button -->
+  <div style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
+      <a href="index.html" style="display: inline-flex; align-items: center; padding: 10px 16px; background: rgba(255, 255, 255, 0.95); color: #333; text-decoration: none; border-radius: 8px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+          <svg style="width: 20px; height: 20px; margin-right: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          返回首页
+      </a>
+  </div>
+
+  <header>
+      <div class="container">
+          <div class="header-content">
+              <div class="logo">
+                  <div class="logo-icon">💎</div>
+                  Gemini 2.5 Pro
+              </div>
+              <p class="tagline">The Biggest & Coolest AI Update Yet - Now Free for Everyone!</p>
+              <p class="subtitle">Advanced reasoning, improved coding, expanded memory, and revolutionary features that might just beat ChatGPT</p>
+              <div class="hero-features">
+                  <div class="hero-feature">
+                      <span class="hero-feature-icon">🧠</span>
+                      <span class="hero-feature-text">Chain of Thought</span>
+                  </div>
+                  <div class="hero-feature">
+                      <span class="hero-feature-icon">💻</span>
+                      <span class="hero-feature-text">Advanced Coding</span>
+                  </div>
+                  <div class="hero-feature">
+                      <span class="hero-feature-icon">📚</span>
+                      <span class="hero-feature-text">1M Token Context</span>
+                  </div>
+                  <div class="hero-feature">
+                      <span class="hero-feature-icon">🎨</span>
+                      <span class="hero-feature-text">Canvas Mode</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <section class="cta-section">
+      <div class="container">
+          <h2 class="cta-title">Google's Best Model - Now Available to All Free Users</h2>
+          <p class="cta-subtitle">Experience the revolutionary AI assistant with smarter problem-solving and enhanced capabilities</p>
+          <div class="cta-buttons">
+              <a href="https://gemini.google.com" target="_blank" class="cta-button cta-primary">
+                  🚀 Try Gemini 2.5 Pro Free
+              </a>
+              <a href="https://www.youtube.com/watch?v=RNODXga669Q" target="_blank" class="cta-button cta-secondary">
+                  📺 Watch 30 Pro Hacks
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <section class="video-section">
+      <div class="container">
+          <div class="video-container">
+              <h2 class="section-title">30 Gemini 2.5 Pro Hacks & Features</h2>
+              <p class="section-subtitle">Master every feature and unlock the full potential of Google's most advanced AI</p>
+              
+              <div class="video-intro">
+                  <h3>🎯 What You'll Master</h3>
+                  <p>Discover 30 powerful hacks including chain of thought reasoning, advanced coding, Canvas mode, Gems creation, and deep research capabilities</p>
+              </div>
+              
+              <div class="video-wrapper">
+                  <iframe 
+                      src="https://www.youtube.com/embed/RNODXga669Q" 
+                      title="30 Gemini 2.5 Pro Hacks You Need to Know"
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen>
+                  </iframe>
+              </div>
+              <a href="https://www.youtube.com/watch?v=RNODXga669Q" target="_blank" class="cta-button cta-secondary">
+                  🔗 Open in YouTube
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <section class="comparison-section">
+      <div class="container">
+          <div class="comparison-card">
+              <div class="vs-badge">Gemini 2.5 Pro vs ChatGPT</div>
+              <p class="comparison-text">"Gemini 2.5 might be the biggest and coolest Gemini update yet with the larger context window upgraded ways to handle different media and a whole new action plan it might just beat ChatGPT."</p>
+              <p style="font-size: 1.1rem; color: #666; margin-top: 1rem;">- 30 Gemini 2.5 Pro Hacks</p>
+          </div>
+      </div>
+  </section>
+
+  <section class="features-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">Revolutionary Core Features</h2>
+              <p class="section-subtitle">Discover the game-changing capabilities that set Gemini 2.5 Pro apart</p>
+          </div>
+          
+          <div class="features-grid">
+              <div class="feature-card">
+                  <span class="feature-icon">🧠</span>
+                  <h3 class="feature-title">Chain of Thought Reasoning</h3>
+                  <p class="feature-description">First Gemini version with always-on reasoning that breaks complex problems into manageable tasks for organized, easy-to-follow answers.</p>
+                  <ul class="feature-list">
+                      <li>Automatic problem breakdown</li>
+                      <li>Step-by-step solution synthesis</li>
+                      <li>Explainable reasoning on demand</li>
+                      <li>More organized responses</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card">
+                  <span class="feature-icon">💻</span>
+                  <h3 class="feature-title">Advanced Coding & Debugging</h3>
+                  <p class="feature-description">Kind of awesome coding capabilities across major programming languages with ability to handle entire codebases and debug complex issues.</p>
+                  <ul class="feature-list">
+                      <li>Python, JavaScript, Java, C++, Go, PHP</li>
+                      <li>React, Django framework support</li>
+                      <li>Entire codebase analysis</li>
+                      <li>Code optimization & refactoring</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card">
+                  <span class="feature-icon">📚</span>
+                  <h3 class="feature-title">Massive 1M Token Context</h3>
+                  <p class="feature-description">Handle large documents, datasets, and have very long chats with ability to go back and forth refining ideas across ~1,500 pages.</p>
+                  <ul class="feature-list">
+                      <li>Process entire books/reports</li>
+                      <li>Long conversation memory</li>
+                      <li>Multiple file upload support</li>
+                      <li>Iterative idea refinement</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card">
+                  <span class="feature-icon">🎨</span>
+                  <h3 class="feature-title">Canvas Mode</h3>
+                  <p class="feature-description">Revolutionary split-screen editor for targeted text/code editing with real-time adjustments, auto-formatting, and live preview capabilities.</p>
+                  <ul class="feature-list">
+                      <li>Targeted text editing</li>
+                      <li>Tone & length sliders</li>
+                      <li>Auto-formatting tools</li>
+                      <li>Live code preview</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card">
+                  <span class="feature-icon">🌐</span>
+                  <h3 class="feature-title">Enhanced Web Browsing</h3>
+                  <p class="feature-description">Built-in web browsing with newest knowledge cutoff (January 2025) and ability to explicitly search for current information.</p>
+                  <ul class="feature-list">
+                      <li>Real-time web search</li>
+                      <li>Latest knowledge cutoff</li>
+                      <li>Current information access</li>
+                      <li>Source verification</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card">
+                  <span class="feature-icon">🔍</span>
+                  <h3 class="feature-title">Deep Research</h3>
+                  <p class="feature-description">Excel at providing well-rounded answers to big open-ended questions with customizable research plans and comprehensive analysis.</p>
+                  <ul class="feature-list">
+                      <li>Research plan creation</li>
+                      <li>Multi-source analysis</li>
+                      <li>Customizable parameters</li>
+                      <li>Action plan generation</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="gems-section">
+      <div class="container">
+          <div class="section-header">
+              <h2

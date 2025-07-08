@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grok AI - Ultimate Beginner's Guide 2025</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      
+      body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+          line-height: 1.6;
+          color: #1a1a1a;
+          background: #fff;
+          overflow-x: hidden;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+      }
+      
+      header {
+          background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 30%, #4a4a4a 60%, #666666 100%);
+          color: white;
+          padding: 5rem 0;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      header::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+              radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(255,255,255,0.08) 0%, transparent 50%),
+              linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%);
+          animation: shimmer 6s ease-in-out infinite;
+      }
+      
+      @keyframes shimmer {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.8; }
+      }
+      
+      .header-content {
+          position: relative;
+          z-index: 2;
+      }
+      
+      .logo {
+          font-size: 4.5rem;
+          font-weight: 900;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          animation: slideInDown 1s ease;
+          letter-spacing: -2px;
+      }
+      
+      .logo-icon {
+          width: 90px;
+          height: 90px;
+          background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+          border-radius: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 3rem;
+          border: 3px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      
+      .tagline {
+          font-size: 1.8rem;
+          opacity: 0.95;
+          max-width: 900px;
+          margin: 0 auto 1.5rem;
+          animation: slideInUp 1s ease 0.3s both;
+          font-weight: 300;
+          line-height: 1.4;
+      }
+      
+      .subtitle {
+          font-size: 1.2rem;
+          opacity: 0.9;
+          margin-bottom: 3rem;
+          animation: fadeIn 1s ease 0.6s both;
+          max-width: 700px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      
+      .hero-badges {
+          display: flex;
+          justify-content: center;
+          gap: 1.5rem;
+          margin-top: 2rem;
+          flex-wrap: wrap;
+          animation: fadeIn 1s ease 0.9s both;
+      }
+      
+      .badge {
+          background: rgba(255, 255, 255, 0.15);
+          padding: 12px 24px;
+          border-radius: 30px;
+          font-size: 1rem;
+          font-weight: 500;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          transition: all 0.3s ease;
+      }
+      
+      .badge:hover {
+          background: rgba(255, 255, 255, 0.25);
+          transform: translateY(-2px);
+      }
+      
+      .cta-section {
+          background: #f8f9fa;
+          padding: 4rem 0;
+          text-align: center;
+      }
+      
+      .cta-title {
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+          font-weight: 700;
+      }
+      
+      .cta-subtitle {
+          font-size: 1.3rem;
+          color: #666;
+          margin-bottom: 3rem;
+      }
+      
+      .cta-buttons {
+          display: flex;
+          gap: 2rem;
+          justify-content: center;
+          flex-wrap: wrap;
+      }
+      
+      .cta-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.8rem;
+          padding: 18px 36px;
+          font-size: 1.2rem;
+          font-weight: 600;
+          text-decoration: none;
+          border-radius: 50px;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .cta-button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s ease;
+      }
+      
+      .cta-button:hover::before {
+          left: 100%;
+      }
+      
+      .cta-primary {
+          background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+          color: white;
+      }
+      
+      .cta-primary:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 15px 35px rgba(26, 26, 26, 0.4);
+      }
+      
+      .cta-secondary {
+          background: white;
+          color: #1a1a1a;
+          border-color: #1a1a1a;
+      }
+      
+      .cta-secondary:hover {
+          background: #f8f9fa;
+          transform: translateY(-3px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      
+      .video-section {
+          padding: 6rem 0;
+          background: white;
+      }
+      
+      .video-container {
+          max-width: 1000px;
+          margin: 0 auto;
+          text-align: center;
+      }
+      
+      .section-title {
+          font-size: 3rem;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+          font-weight: 800;
+      }
+      
+      .section-subtitle {
+          font-size: 1.4rem;
+          color: #666;
+          margin-bottom: 3rem;
+          font-weight: 300;
+      }
+      
+      .video-intro {
+          background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+          color: white;
+          padding: 2.5rem;
+          border-radius: 20px;
+          margin: 2rem 0;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .video-intro::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          right: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+          animation: rotate 15s linear infinite;
+      }
+      
+      @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+      }
+      
+      .video-intro h3 {
+          font-size: 1.6rem;
+          margin-bottom: 1rem;
+          position: relative;
+          z-index: 2;
+      }
+      
+      .video-intro p {
+          position: relative;
+          z-index: 2;
+          font-size: 1.1rem;
+      }
+      
+      .video-wrapper {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%;
+          margin: 3rem 0;
+          border-radius: 25px;
+          overflow: hidden;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+          transition: transform 0.3s ease;
+      }
+      
+      .video-wrapper:hover {
+          transform: scale(1.02);
+      }
+      
+      .video-wrapper iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+      }
+      
+      .timeline-section {
+          padding: 6rem 0;
+          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+      
+      .timeline {
+          max-width: 900px;
+          margin: 0 auto;
+          position: relative;
+      }
+      
+      .timeline::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          width: 4px;
+          background: linear-gradient(to bottom, #ff6b6b, #4ecdc4);
+          transform: translateX(-50%);
+      }
+      
+      .timeline-item {
+          position: relative;
+          margin-bottom: 3rem;
+          width: 50%;
+          padding: 2rem;
+      }
+      
+      .timeline-item:nth-child(odd) {
+          left: 0;
+          padding-right: 4rem;
+          text-align: right;
+      }
+      
+      .timeline-item:nth-child(even) {
+          left: 50%;
+          padding-left: 4rem;
+          text-align: left;
+      }
+      
+      .timeline-content {
+          background: white;
+          padding: 2.5rem;
+          border-radius: 20px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          position: relative;
+          transition: all 0.3s ease;
+      }
+      
+      .timeline-content:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+      
+      .timeline-time {
+          background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+          color: white;
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 0.9rem;
+          font-weight: 600;
+          display: inline-block;
+          margin-bottom: 1rem;
+      }
+      
+      .timeline-title {
+          font-size: 1.4rem;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+          font-weight: 600;
+      }
+      
+      .timeline-description {
+          color: #666;
+          line-height: 1.6;
+      }
+      
+      .timeline-dot {
+          position: absolute;
+          top: 2rem;
+          width: 20px;
+          height: 20px;
+          background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+          border-radius: 50%;
+          border: 4px solid white;
+          box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.2);
+      }
+      
+      .timeline-item:nth-child(odd) .timeline-dot {
+          right: -10px;
+      }
+      
+      .timeline-item:nth-child(even) .timeline-dot {
+          left: -10px;
+      }
+      
+      .features-section {
+          padding: 6rem 0;
+          background: white;
+      }
+      
+      .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 3rem;
+          margin-top: 4rem;
+      }
+      
+      .feature-card {
+          background: #f8f9fa;
+          padding: 3rem 2.5rem;
+          border-radius: 25px;
+          text-align: center;
+          transition: all 0.4s ease;
+          cursor: pointer;
+          border: 2px solid transparent;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .feature-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.1), transparent);
+          transition: left 0.6s ease;
+      }
+      
+      .feature-card:hover::before {
+          left: 100%;
+      }
+      
+      .feature-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+          border-color: #ff6b6b;
+          background: white;
+      }
+      
+      .feature-icon {
+          font-size: 4rem;
+          margin-bottom: 2rem;
+          display: block;
+      }
+      
+      .feature-title {
+          font-size: 1.6rem;
+          margin-bottom: 1.5rem;
+          color: #1a1a1a;
+          font-weight: 700;
+      }
+      
+      .feature-description {
+          color: #666;
+          line-height: 1.8;
+          font-size: 1.1rem;
+      }
+      
+      .tips-section {
+          padding: 6rem 0;
+          background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+          color: white;
+      }
+      
+      .tips-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2.5rem;
+          margin-top: 4rem;
+      }
+      
+      .tip-card {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2.5rem;
+          border-radius: 20px;
+          backdrop-filter: blur(15px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          transition: all 0.3s ease;
+      }
+      
+      .tip-card:hover {
+          transform: translateY(-8px);
+          background: rgba(255, 255, 255, 0.15);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      
+      .tip-number {
+          display: inline-block;
+          background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+          color: white;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          font-size: 1.5rem;
+          font-weight: bold;
+          text-align: center;
+          line-height: 50px;
+          margin-bottom: 1.5rem;
+      }
+      
+      .tip-title {
+          font-size: 1.4rem;
+          margin-bottom: 1rem;
+          font-weight: 600;
+      }
+      
+      .tip-description {
+          font-size: 1rem;
+          line-height: 1.6;
+          opacity: 0.9;
+      }
+      
+      .interactive-demo {
+          padding: 6rem 0;
+          background: #f8f9fa;
+      }
+      
+      .demo-interface {
+          max-width: 800px;
+          margin: 0 auto;
+          background: white;
+          padding: 4rem;
+          border-radius: 25px;
+          box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      }
+      
+      .demo-tabs {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 3rem;
+          border-bottom: 2px solid #e0e0e0;
+      }
+      
+      .demo-tab {
+          padding: 1rem 2rem;
+          background: none;
+          border: none;
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: #666;
+          cursor: pointer;
+          border-bottom: 3px solid transparent;
+          transition: all 0.3s ease;
+      }
+      
+      .demo-tab.active {
+          color: #1a1a1a;
+          border-bottom-color: #ff6b6b;
+      }
+      
+      .demo-content {
+          display: none;
+      }
+      
+      .demo-content.active {
+          display: block;
+      }
+      
+      .demo-input-group {
+          margin-bottom: 2rem;
+      }
+      
+      .demo-label {
+          display: block;
+          margin-bottom: 1rem;
+          font-weight: 600;
+          color: #1a1a1a;
+      }
+      
+      .demo-input, .demo-textarea {
+          width: 100%;
+          padding: 1.5rem;
+          border: 2px solid #e0e0e0;
+          border-radius: 15px;
+          font-size: 1.1rem;
+          transition: border-color 0.3s ease;
+          resize: vertical;
+      }
+      
+      .demo-input:focus, .demo-textarea:focus {
+          outline: none;
+          border-color: #ff6b6b;
+      }
+      
+      .demo-button {
+          background: linear-gradient(135deg, #1a1a1a, #4a4a4a);
+          color: white;
+          border: none;
+          padding: 18px 40px;
+          border-radius: 50px;
+          font-weight: 600;
+          cursor: pointer;
+          font-size: 1.2rem;
+          transition: all 0.3s ease;
+          width: 100%;
+      }
+      
+      .demo-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 15px 35px rgba(26, 26, 26, 0.4);
+      }
+      
+      .demo-result {
+          margin-top: 3rem;
+          padding: 2.5rem;
+          background: #f8f9ff;
+          border-radius: 15px;
+          display: none;
+          border-left: 5px solid #ff6b6b;
+      }
+      
+      footer {
+          background: #1a1a1a;
+          color: white;
+          padding: 5rem 0 2rem;
+      }
+      
+      .footer-content {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 3rem;
+          margin-bottom: 3rem;
+      }
+      
+      .footer-section h4 {
+          margin-bottom: 1.5rem;
+          color: #ff6b6b;
+          font-size: 1.3rem;
+          font-weight: 600;
+      }
+      
+      .footer-links {
+          list-style: none;
+      }
+      
+      .footer-links li {
+          margin-bottom: 0.8rem;
+      }
+      
+      .footer-links a {
+          color: #ccc;
+          text-decoration: none;
+          transition: color 0.3s ease;
+      }
+      
+      .footer-links a:hover {
+          color: #ff6b6b;
+      }
+      
+      .footer-bottom {
+          border-top: 1px solid #333;
+          padding-top: 2rem;
+          text-align: center;
+          color: #999;
+      }
+      
+      @keyframes slideInDown {
+          from {
+              opacity: 0;
+              transform: translateY(-50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      @keyframes slideInUp {
+          from {
+              opacity: 0;
+              transform: translateY(50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+      
+      @media (max-width: 768px) {
+          .logo {
+              font-size: 3rem;
+              flex-direction: column;
+              gap: 0.5rem;
+          }
+          
+          .logo-icon {
+              width: 70px;
+              height: 70px;
+              font-size: 2rem;
+          }
+          
+          .tagline {
+              font-size: 1.4rem;
+          }
+          
+          .hero-badges {
+              flex-direction: column;
+              align-items: center;
+          }
+          
+          .features-grid,
+          .tips-grid {
+              grid-template-columns: 1fr;
+          }
+          
+          .cta-buttons {
+              flex-direction: column;
+              align-items: center;
+          }
+          
+          .section-title {
+              font-size: 2.2rem;
+          }
+          
+          .demo-interface {
+              padding: 2rem;
+          }
+          
+          .timeline::before {
+              left: 30px;
+          }
+          
+          .timeline-item {
+              width: 100%;
+              left: 0 !important;
+              padding-left: 80px !important;
+              padding-right: 2rem !important;
+              text-align: left !important;
+          }
+          
+          .timeline-dot {
+              left: 20px !important;
+          }
+          
+          .demo-tabs {
+              flex-direction: column;
+          }
+      }
+  </style>
+</head>
+<body>
+  <!-- Back to Home Button -->
+  <div style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
+      <a href="index.html" style="display: inline-flex; align-items: center; padding: 10px 16px; background: rgba(255, 255, 255, 0.95); color: #333; text-decoration: none; border-radius: 8px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+          <svg style="width: 20px; height: 20px; margin-right: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          返回首页
+      </a>
+  </div>
+
+  <header>
+      <div class="container">
+          <div class="header-content">
+              <div class="logo">
+                  <div class="logo-icon">🤖</div>
+                  Grok AI
+              </div>
+              <p class="tagline">Ultimate Beginner's Guide 2025 - Master AI Like Never Before</p>
+              <p class="subtitle">Comprehensive tutorial covering customization, image generation, data analysis, and advanced features</p>
+              <div class="hero-badges">
+                  <span class="badge">🎨 Image Generation</span>
+                  <span class="badge">📊 Data Analysis</span>
+                  <span class="badge">🔍 Deep Search</span>
+                  <span class="badge">✍️ Text Enhancement</span>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <section class="cta-section">
+      <div class="container">
+          <h2 class="cta-title">Goodbye ChatGPT o3... Hello Grok 3!</h2>
+          <p class="cta-subtitle">Discover why Grok AI is becoming the go-to choice for advanced AI users</p>
+          <div class="cta-buttons">
+              <a href="https://grok.x.ai" target="_blank" class="cta-button cta-primary">
+                  🚀 Try Grok AI Now
+              </a>
+              <a href="https://www.youtube.com/watch?v=yut6vtu2tQU" target="_blank" class="cta-button cta-secondary">
+                  📺 Watch Full Tutorial
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <section class="video-section">
+      <div class="container">
+          <div class="video-container">
+              <h2 class="section-title">Complete Grok AI Masterclass</h2>
+              <p class="section-subtitle">Everything you need to know to become a Grok AI power user</p>
+              
+              <div class="video-intro">
+                  <h3>🎯 What You'll Learn</h3>
+                  <p>From basic setup to advanced features - this comprehensive guide covers customization, privacy settings, artistic creation, text improvement, web search, and data analysis</p>
+              </div>
+              
+              <div class="video-wrapper">
+                  <iframe 
+                      src="https://www.youtube.com/embed/yut6vtu2tQU" 
+                      title="Goodbye ChatGPT o3… Ultimate Grok 3 Guide 2025 (How to use Grok AI for beginners)"
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen>
+                  </iframe>
+              </div>
+              <a href="https://www.youtube.com/watch?v=yut6vtu2tQU" target="_blank" class="cta-button cta-secondary">
+                  🔗 Open in YouTube
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <section class="timeline-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">Video Timeline & Key Topics</h2>
+              <p class="section-subtitle">Navigate through the comprehensive tutorial with these timestamped sections</p>
+          </div>
+          
+          <div class="timeline">
+              <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                      <div class="timeline-time">00:00</div>
+                      <h3 class="timeline-title">Introduction & Setup</h3>
+                      <p class="timeline-description">Comprehensive guide introduction, Grok AI overview as ChatGPT alternative, user interface walkthrough, and importance of understanding core features for optimal usage.</p>
+                  </div>
+              </div>
+              
+              <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                      <div class="timeline-time">03:37</div>
+                      <h3 class="timeline-title">Artistic Creation & Recraft</h3>
+                      <p class="timeline-description">Utilizing Grok AI and Recraft for artistic projects, browsing styles, creating consistent brand identity, style mixing techniques, and business applications for non-designers.</p>
+                  </div>
+              </div>
+              
+              <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                      <div class="timeline-time">07:19</div>
+                      <h3 class="timeline-title">Text Improvement & Web Search</h3>
+                      <p class="timeline-description">Essential tips for effective Grok usage, text enhancement techniques, web search activation, canvas mode exploration, and specifying requirements for optimal results.</p>
+                  </div>
+              </div>
+              
+              <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                      <div class="timeline-time">10:58</div>
+                      <h3 class="timeline-title">Advanced Image Generation</h3>
+                      <p class="timeline-description">Practical image generation tips, detailed prompt crafting, style incorporation, editing panel usage, and manual adjustment techniques for professional results.</p>
+                  </div>
+              </div>
+              
+              <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                      <div class="timeline-time">14:37</div>
+                      <h3 class="timeline-title">Deep Search Capabilities</h3>
+                      <p class="timeline-description">Research options exploration, deep and deeper search functionalities, question framing strategies, result refinement techniques, and reasoning capabilities breakdown.</p>
+                  </div>
+              </div>
+              
+              <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                      <div class="timeline-time">18:19</div>
+                      <h3 class="timeline-title">Data Analysis & Scenario Planning</h3>
+                      <p class="timeline-description">Effective data analysis techniques, scenario planning implementation, what-if analysis, reference file uploading, report generation, and persona switching for tailored responses.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="features-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">Key Grok AI Features</h2>
+              <p class="section-subtitle">Discover what makes Grok AI stand out from other AI assistants</p>
+          </div>
+          
+          <div class="features-grid">
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">🎨</span>
+                  <h3 class="feature-title">Advanced Image Generation</h3>
+                  <p class="feature-description">Create stunning visuals with detailed prompts, style mixing, and professional editing capabilities. Perfect for businesses and creative projects.</p>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">🔍</span>
+                  <h3 class="feature-title">Deep Web Search</h3>
+                  <p class="feature-description">Access real-time information with advanced search capabilities. Get reliable, up-to-date results from across the web with source validation.</p>
+              </div>
+              

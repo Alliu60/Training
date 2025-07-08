@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NotebookLM - AI-Powered Research & Learning Revolution</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      
+      body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+          line-height: 1.6;
+          color: #1a1a1a;
+          background: #fff;
+          overflow-x: hidden;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+      }
+      
+      header {
+          background: linear-gradient(135deg, #4285f4 0%, #34a853 30%, #fbbc04 60%, #ea4335 100%);
+          color: white;
+          padding: 5rem 0;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      header::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+              radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(255,255,255,0.12) 0%, transparent 50%);
+          animation: float 10s ease-in-out infinite;
+      }
+      
+      @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(3deg); }
+      }
+      
+      .header-content {
+          position: relative;
+          z-index: 2;
+      }
+      
+      .logo {
+          font-size: 4.5rem;
+          font-weight: 900;
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          animation: slideInDown 1s ease;
+          letter-spacing: -2px;
+      }
+      
+      .logo-icon {
+          width: 90px;
+          height: 90px;
+          background: rgba(255, 255, 255, 0.25);
+          border-radius: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 3rem;
+          backdrop-filter: blur(15px);
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+      
+      .tagline {
+          font-size: 1.8rem;
+          opacity: 0.95;
+          max-width: 900px;
+          margin: 0 auto 1.5rem;
+          animation: slideInUp 1s ease 0.3s both;
+          font-weight: 300;
+          line-height: 1.4;
+      }
+      
+      .subtitle {
+          font-size: 1.2rem;
+          opacity: 0.9;
+          margin-bottom: 3rem;
+          animation: fadeIn 1s ease 0.6s both;
+          max-width: 700px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      
+      .hero-features {
+          display: flex;
+          justify-content: center;
+          gap: 2rem;
+          margin-top: 2rem;
+          flex-wrap: wrap;
+          animation: fadeIn 1s ease 0.9s both;
+      }
+      
+      .hero-feature {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 1.5rem 2rem;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          text-align: center;
+          transition: all 0.3s ease;
+      }
+      
+      .hero-feature:hover {
+          background: rgba(255, 255, 255, 0.2);
+          transform: translateY(-5px);
+      }
+      
+      .hero-feature-icon {
+          font-size: 2rem;
+          display: block;
+          margin-bottom: 0.5rem;
+      }
+      
+      .hero-feature-text {
+          font-size: 1rem;
+          font-weight: 500;
+      }
+      
+      .cta-section {
+          background: #f8f9fa;
+          padding: 4rem 0;
+          text-align: center;
+      }
+      
+      .cta-title {
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+          font-weight: 700;
+      }
+      
+      .cta-subtitle {
+          font-size: 1.3rem;
+          color: #666;
+          margin-bottom: 3rem;
+      }
+      
+      .cta-buttons {
+          display: flex;
+          gap: 2rem;
+          justify-content: center;
+          flex-wrap: wrap;
+      }
+      
+      .cta-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.8rem;
+          padding: 18px 36px;
+          font-size: 1.2rem;
+          font-weight: 600;
+          text-decoration: none;
+          border-radius: 50px;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .cta-button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s ease;
+      }
+      
+      .cta-button:hover::before {
+          left: 100%;
+      }
+      
+      .cta-primary {
+          background: linear-gradient(135deg, #4285f4, #34a853);
+          color: white;
+      }
+      
+      .cta-primary:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 15px 35px rgba(66, 133, 244, 0.4);
+      }
+      
+      .cta-secondary {
+          background: white;
+          color: #4285f4;
+          border-color: #4285f4;
+      }
+      
+      .cta-secondary:hover {
+          background: #f8f9ff;
+          transform: translateY(-3px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      
+      .video-section {
+          padding: 6rem 0;
+          background: white;
+      }
+      
+      .video-container {
+          max-width: 1000px;
+          margin: 0 auto;
+          text-align: center;
+      }
+      
+      .section-title {
+          font-size: 3rem;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+          font-weight: 800;
+      }
+      
+      .section-subtitle {
+          font-size: 1.4rem;
+          color: #666;
+          margin-bottom: 3rem;
+          font-weight: 300;
+      }
+      
+      .video-intro {
+          background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+          color: white;
+          padding: 2.5rem;
+          border-radius: 20px;
+          margin: 2rem 0;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .video-intro::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          right: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+          animation: rotate 15s linear infinite;
+      }
+      
+      @keyframes rotate {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+      }
+      
+      .video-intro h3 {
+          font-size: 1.6rem;
+          margin-bottom: 1rem;
+          position: relative;
+          z-index: 2;
+      }
+      
+      .video-intro p {
+          position: relative;
+          z-index: 2;
+          font-size: 1.1rem;
+      }
+      
+      .video-wrapper {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%;
+          margin: 3rem 0;
+          border-radius: 25px;
+          overflow: hidden;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+          transition: transform 0.3s ease;
+      }
+      
+      .video-wrapper:hover {
+          transform: scale(1.02);
+      }
+      
+      .video-wrapper iframe {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+      }
+      
+      .features-section {
+          padding: 6rem 0;
+          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+      
+      .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+          gap: 3rem;
+          margin-top: 4rem;
+      }
+      
+      .feature-card {
+          background: white;
+          padding: 3.5rem 3rem;
+          border-radius: 25px;
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+          transition: all 0.4s ease;
+          cursor: pointer;
+          border: 2px solid transparent;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .feature-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(66, 133, 244, 0.1), transparent);
+          transition: left 0.6s ease;
+      }
+      
+      .feature-card:hover::before {
+          left: 100%;
+      }
+      
+      .feature-card:hover {
+          transform: translateY(-12px);
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+          border-color: #4285f4;
+      }
+      
+      .feature-icon {
+          display: inline-block;
+          background: linear-gradient(135deg, #4285f4, #34a853);
+          color: white;
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          font-size: 2rem;
+          text-align: center;
+          line-height: 70px;
+          margin-bottom: 2rem;
+      }
+      
+      .feature-title {
+          font-size: 1.8rem;
+          margin-bottom: 1.5rem;
+          color: #1a1a1a;
+          font-weight: 700;
+      }
+      
+      .feature-description {
+          color: #666;
+          line-height: 1.8;
+          font-size: 1.1rem;
+          margin-bottom: 2rem;
+      }
+      
+      .feature-list {
+          list-style: none;
+      }
+      
+      .feature-list li {
+          padding: 0.8rem 0;
+          position: relative;
+          padding-left: 2rem;
+          color: #555;
+      }
+      
+      .feature-list li::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #34a853;
+          font-weight: bold;
+          font-size: 1.2rem;
+      }
+      
+      .benefits-section {
+          padding: 6rem 0;
+          background: white;
+      }
+      
+      .benefits-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+          margin-top: 4rem;
+      }
+      
+      .benefit-card {
+          background: #f8f9fa;
+          padding: 2.5rem;
+          border-radius: 20px;
+          text-align: center;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+      }
+      
+      .benefit-card:hover {
+          transform: translateY(-5px);
+          border-color: #4285f4;
+          background: white;
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+      
+      .benefit-icon {
+          font-size: 3.5rem;
+          margin-bottom: 1.5rem;
+          display: block;
+      }
+      
+      .benefit-title {
+          font-size: 1.4rem;
+          margin-bottom: 1rem;
+          color: #1a1a1a;
+          font-weight: 600;
+      }
+      
+      .benefit-description {
+          color: #666;
+          line-height: 1.6;
+      }
+      
+      .use-cases-section {
+          padding: 6rem 0;
+          background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+          color: white;
+      }
+      
+      .use-cases-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
+          margin-top: 4rem;
+      }
+      
+      .use-case-card {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2.5rem;
+          border-radius: 20px;
+          text-align: center;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(15px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .use-case-card:hover {
+          transform: translateY(-8px);
+          background: rgba(255, 255, 255, 0.15);
+      }
+      
+      .use-case-icon {
+          font-size: 3.5rem;
+          margin-bottom: 1.5rem;
+          display: block;
+      }
+      
+      .use-case-title {
+          font-size: 1.4rem;
+          margin-bottom: 1rem;
+          font-weight: 600;
+      }
+      
+      .use-case-description {
+          font-size: 1rem;
+          line-height: 1.6;
+          opacity: 0.9;
+      }
+      
+      .interactive-demo {
+          padding: 6rem 0;
+          background: #f8f9fa;
+      }
+      
+      .demo-interface {
+          max-width: 800px;
+          margin: 0 auto;
+          background: white;
+          padding: 4rem;
+          border-radius: 25px;
+          box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      }
+      
+      .demo-steps {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 2rem;
+          margin-top: 3rem;
+      }
+      
+      .demo-step {
+          text-align: center;
+          padding: 2rem;
+          border-radius: 15px;
+          background: #f8f9fa;
+          transition: all 0.3s ease;
+      }
+      
+      .demo-step:hover {
+          background: white;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          transform: translateY(-5px);
+      }
+      
+      .demo-step-number {
+          display: inline-block;
+          background: linear-gradient(135deg, #4285f4, #34a853);
+          color: white;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          font-size: 1.5rem;
+          font-weight: bold;
+          text-align: center;
+          line-height: 50px;
+          margin-bottom: 1rem;
+      }
+      
+      .demo-step-title {
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+          color: #1a1a1a;
+          font-weight: 600;
+      }
+      
+      .demo-step-description {
+          color: #666;
+          font-size: 0.9rem;
+      }
+      
+      .quote-section {
+          padding: 6rem 0;
+          background: white;
+      }
+      
+      .quote-card {
+          max-width: 900px;
+          margin: 0 auto;
+          background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+          color: white;
+          padding: 4rem;
+          border-radius: 25px;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .quote-text {
+          font-size: 1.4rem;
+          font-style: italic;
+          margin-bottom: 2rem;
+          line-height: 1.8;
+          position: relative;
+          z-index: 2;
+      }
+      
+      .quote-author {
+          font-size: 1.2rem;
+          font-weight: 600;
+          position: relative;
+          z-index: 2;
+      }
+      
+      footer {
+          background: #1a1a1a;
+          color: white;
+          padding: 5rem 0 2rem;
+      }
+      
+      .footer-content {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 3rem;
+          margin-bottom: 3rem;
+      }
+      
+      .footer-section h4 {
+          margin-bottom: 1.5rem;
+          color: #4285f4;
+          font-size: 1.3rem;
+          font-weight: 600;
+      }
+      
+      .footer-links {
+          list-style: none;
+      }
+      
+      .footer-links li {
+          margin-bottom: 0.8rem;
+      }
+      
+      .footer-links a {
+          color: #ccc;
+          text-decoration: none;
+          transition: color 0.3s ease;
+      }
+      
+      .footer-links a:hover {
+          color: #4285f4;
+      }
+      
+      .footer-bottom {
+          border-top: 1px solid #333;
+          padding-top: 2rem;
+          text-align: center;
+          color: #999;
+      }
+      
+      @keyframes slideInDown {
+          from {
+              opacity: 0;
+              transform: translateY(-50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      @keyframes slideInUp {
+          from {
+              opacity: 0;
+              transform: translateY(50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+      
+      @media (max-width: 768px) {
+          .logo {
+              font-size: 3rem;
+              flex-direction: column;
+              gap: 0.5rem;
+          }
+          
+          .logo-icon {
+              width: 70px;
+              height: 70px;
+              font-size: 2rem;
+          }
+          
+          .tagline {
+              font-size: 1.4rem;
+          }
+          
+          .hero-features {
+              flex-direction: column;
+              gap: 1rem;
+          }
+          
+          .features-grid,
+          .benefits-grid,
+          .use-cases-grid {
+              grid-template-columns: 1fr;
+          }
+          
+          .cta-buttons {
+              flex-direction: column;
+              align-items: center;
+          }
+          
+          .section-title {
+              font-size: 2.2rem;
+          }
+          
+          .demo-interface {
+              padding: 2rem;
+          }
+          
+          .demo-steps {
+              grid-template-columns: 1fr;
+          }
+      }
+  </style>
+</head>
+<body>
+  <!-- Back to Home Button -->
+  <div style="position: fixed; top: 20px; left: 20px; z-index: 1000;">
+      <a href="index.html" style="display: inline-flex; align-items: center; padding: 10px 16px; background: rgba(255, 255, 255, 0.95); color: #333; text-decoration: none; border-radius: 8px; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+          <svg style="width: 20px; height: 20px; margin-right: 8px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          返回首页
+      </a>
+  </div>
+
+  <header>
+      <div class="container">
+          <div class="header-content">
+              <div class="logo">
+                  <div class="logo-icon">📚</div>
+                  NotebookLM
+              </div>
+              <p class="tagline">AI-Powered Research & Learning Revolution by Google</p>
+              <p class="subtitle">Transform complex topics into bite-sized, understandable pieces with your personal AI research assistant</p>
+              <div class="hero-features">
+                  <div class="hero-feature">
+                      <span class="hero-feature-icon">📄</span>
+                      <span class="hero-feature-text">50 Sources</span>
+                  </div>
+                  <div class="hero-feature">
+                      <span class="hero-feature-icon">🧠</span>
+                      <span class="hero-feature-text">AI Summaries</span>
+                  </div>
+                  <div class="hero-feature">
+                      <span class="hero-feature-icon">🎧</span>
+                      <span class="hero-feature-text">Audio Podcasts</span>
+                  </div>
+                  <div class="hero-feature">
+                      <span class="hero-feature-icon">💬</span>
+                      <span class="hero-feature-text">Interactive Chat</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <section class="cta-section">
+      <div class="container">
+          <h2 class="cta-title">Your Smart Study Buddy Inside Your Notes</h2>
+          <p class="cta-subtitle">Combine research assistant, tutor, and podcast into one powerful AI tool</p>
+          <div class="cta-buttons">
+              <a href="https://notebooklm.google.com" target="_blank" class="cta-button cta-primary">
+                  🚀 Try NotebookLM Free
+              </a>
+              <a href="https://www.youtube.com/watch?v=Xjt59IY43Yc" target="_blank" class="cta-button cta-secondary">
+                  📺 Watch Full Tutorial
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <section class="video-section">
+      <div class="container">
+          <div class="video-container">
+              <h2 class="section-title">Complete NotebookLM Tutorial</h2>
+              <p class="section-subtitle">Master Google's AI-powered research tool from basics to advanced features</p>
+              
+              <div class="video-intro">
+                  <h3>🎯 What You'll Discover</h3>
+                  <p>Learn how to upload sources, generate summaries, create mind maps, use interactive Q&A, and experience the revolutionary audio overview feature</p>
+              </div>
+              
+              <div class="video-wrapper">
+                  <iframe 
+                      src="https://www.youtube.com/embed/Xjt59IY43Yc" 
+                      title="Google Notebook LM Tutorial - Complete Guide"
+                      frameborder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      allowfullscreen>
+                  </iframe>
+              </div>
+              <a href="https://www.youtube.com/watch?v=Xjt59IY43Yc" target="_blank" class="cta-button cta-secondary">
+                  🔗 Open in YouTube
+              </a>
+          </div>
+      </div>
+  </section>
+
+  <section class="features-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">Powerful Features That Transform Learning</h2>
+              <p class="section-subtitle">Discover the comprehensive toolkit that makes NotebookLM your ultimate research companion</p>
+          </div>
+          
+          <div class="features-grid">
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">📁</span>
+                  <h3 class="feature-title">Source Upload & Management</h3>
+                  <p class="feature-description">Upload up to 50 sources for free including articles, YouTube videos, PDFs, Google docs, slides, and images.</p>
+                  <ul class="feature-list">
+                      <li>Direct website link pasting</li>
+                      <li>YouTube video integration</li>
+                      <li>Multiple file format support</li>
+                      <li>Instant content processing</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">📝</span>
+                  <h3 class="feature-title">Automated Summarization</h3>
+                  <p class="feature-description">Get instant, comprehensive summaries of all your uploaded sources with key insights and main points.</p>
+                  <ul class="feature-list">
+                      <li>AI-generated overviews</li>
+                      <li>Key point extraction</li>
+                      <li>Topic organization</li>
+                      <li>Quick understanding</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">🗺️</span>
+                  <h3 class="feature-title">Visual Mind Maps</h3>
+                  <p class="feature-description">Instantly build visual mind maps based on your resources with expandable sections and organized chapters.</p>
+                  <ul class="feature-list">
+                      <li>Automatic map generation</li>
+                      <li>Clickable expandable sections</li>
+                      <li>Chapter organization</li>
+                      <li>Visual learning enhancement</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">💬</span>
+                  <h3 class="feature-title">Interactive Q&A Chat</h3>
+                  <p class="feature-description">Ask specific questions and receive detailed answers with source citations for verification and deeper understanding.</p>
+                  <ul class="feature-list">
+                      <li>Natural language queries</li>
+                      <li>Detailed responses</li>
+                      <li>Source citations included</li>
+                      <li>Fact verification support</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">🎧</span>
+                  <h3 class="feature-title">Deep Dive Audio Overview</h3>
+                  <p class="feature-description">Listen to your topics as engaging podcast conversations with the revolutionary audio overview feature.</p>
+                  <ul class="feature-list">
+                      <li>Full audio conversations</li>
+                      <li>Podcast-style format</li>
+                      <li>Interactive mode (Beta)</li>
+                      <li>Live question joining</li>
+                  </ul>
+              </div>
+              
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">📚</span>
+                  <h3 class="feature-title">Study Tools & Flashcards</h3>
+                  <p class="feature-description">Auto-generate flashcard-style questions and save important insights for efficient revision and learning.</p>
+                  <ul class="feature-list">
+                      <li>FAQ generation</li>
+                      <li>Flashcard creation</li>
+                      <li>Save to notes feature</li>
+                      <li>Quick revision tools</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="interactive-demo">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">How NotebookLM Works</h2>
+              <p class="section-subtitle">Simple steps to transform your research and learning experience</p>
+          </div>
+          
+          <div class="demo-interface">
+              <div class="demo-steps">
+                  <div class="demo-step">
+                      <div class="demo-step-number">1</div>
+                      <h3 class="demo-step-title">Upload Sources</h3>
+                      <p class="demo-step-description">Add up to 50 sources: articles, videos, PDFs, docs, images</p>
+                  </div>
+                  
+                  <div class="demo-step">
+                      <div class="demo-step-number">2</div>
+                      <h3 class="demo-step-title">Get AI Summary</h3>
+                      <p class="demo-step-description">Receive automatic summaries and mind maps</p>
+                  </div>
+                  
+                  <div class="demo-step">
+                      <div class="demo-step-number">3</div>
+                      <h3 class="demo-step-title">Ask Questions</h
