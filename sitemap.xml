@@ -7,7 +7,7 @@
     <!-- Main Index Page -->
     <url>
         <loc>https://alliu60.github.io/Training/</loc>
-        <lastmod>2025-01-08</lastmod>
+        <lastmod>2025-01-11</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -64,6 +64,86 @@
     <url>
         <loc>https://alliu60.github.io/Training/NotebookLM.html</loc>
         <lastmod>2025-01-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- AI Activities Interactive Guide -->
+    <url>
+        <loc>https://alliu60.github.io/Training/AIActivities.html</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- AI Creative Enhancements Guide -->
+    <url>
+        <loc>https://alliu60.github.io/Training/AICreativeEnhancements.html</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- AI Differentiation & Personalized Instruction -->
+    <url>
+        <loc>https://alliu60.github.io/Training/AIDifferentiation-PersonalizedInstruction.html</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- AI Lesson Plans Guide -->
+    <url>
+        <loc>https://alliu60.github.io/Training/AILessonPlans.html</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- AI Teaching Activities -->
+    <url>
+        <loc>https://alliu60.github.io/Training/AITeachingActivities.html</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- AI Tools for Education -->
+    <url>
+        <loc>https://alliu60.github.io/Training/AITools-Education.html</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Canvas for Google Gemini Integration -->
+    <url>
+        <loc>https://alliu60.github.io/Training/CanvasGoogleGemini.html</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Deep Research AI Analysis Engine -->
+    <url>
+        <loc>https://alliu60.github.io/Training/DeepResearch.html</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- AI-Powered Teaching Tools & Prompting -->
+    <url>
+        <loc>https://alliu60.github.io/Training/Prompt-Teaching1.html</loc>
+        <lastmod>2025-01-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Teacher's AI Co-Pilot: NotebookLM Analysis -->
+    <url>
+        <loc>https://alliu60.github.io/Training/TeacherCopilot_%20GoogleNotebookLM.html</loc>
+        <lastmod>2025-01-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

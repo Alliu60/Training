@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Creative Enhancements - Interactive Guide</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      
+      body {
+          font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+          line-height: 1.6;
+          color: #202124;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+      }
+      
+      header {
+          text-align: center;
+          color: white;
+          margin-bottom: 3rem;
+      }
+      
+      .main-title {
+          font-size: 3rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      }
+      
+      .subtitle {
+          font-size: 1.3rem;
+          opacity: 0.9;
+          max-width: 800px;
+          margin: 0 auto 2rem;
+      }
+      
+      .intro-text {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2rem;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          margin-bottom: 3rem;
+          font-size: 1.1rem;
+          line-height: 1.8;
+      }
+      
+      .enhancements-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 2rem;
+          margin-bottom: 3rem;
+      }
+      
+      .enhancement-card {
+          background: white;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
+          cursor: pointer;
+          position: relative;
+      }
+      
+      .enhancement-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      
+      .enhancement-icon {
+          height: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 4rem;
+          color: white;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .enhancement-icon::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, #4285f4 0%, #ea4335 25%, #fbbc04 50%, #34a853 75%, #9aa0a6 100%);
+          opacity: 0.9;
+      }
+      
+      .enhancement-icon span {
+          position: relative;
+          z-index: 2;
+      }
+      
+      .enhancement-content {
+          padding: 2rem;
+      }
+      
+      .enhancement-title {
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          color: #333;
+      }
+      
+      .enhancement-description {
+          color: #666;
+          margin-bottom: 1.5rem;
+          line-height: 1.6;
+      }
+      
+      .try-button {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          border: none;
+          padding: 0.8rem 1.5rem;
+          border-radius: 25px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 0.9rem;
+      }
+      
+      .try-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+      
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(5px);
+      }
+      
+      .modal-content {
+          background-color: white;
+          margin: 2% auto;
+          padding: 0;
+          border-radius: 20px;
+          width: 90%;
+          max-width: 800px;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+          animation: modalSlideIn 0.3s ease;
+      }
+      
+      @keyframes modalSlideIn {
+          from {
+              opacity: 0;
+              transform: translateY(-50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      .modal-header {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          padding: 2rem;
+          border-radius: 20px 20px 0 0;
+      }
+      
+      .modal-title {
+          font-size: 2rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+      }
+      
+      .modal-body {
+          padding: 2rem;
+      }
+      
+      .close {
+          position: absolute;
+          right: 1.5rem;
+          top: 1.5rem;
+          color: white;
+          font-size: 2rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+      }
+      
+      .close:hover {
+          transform: scale(1.1);
+          opacity: 0.8;
+      }
+      
+      .prompt-section {
+          background: #f8f9fa;
+          padding: 1.5rem;
+          border-radius: 10px;
+          margin: 1.5rem 0;
+          border-left: 4px solid #667eea;
+      }
+      
+      .prompt-title {
+          font-weight: 700;
+          margin-bottom: 1rem;
+          color: #333;
+      }
+      
+      .prompt-text {
+          background: white;
+          padding: 1rem;
+          border-radius: 8px;
+          border: 1px solid #e9ecef;
+          font-family: 'Courier New', monospace;
+          font-size: 0.9rem;
+          line-height: 1.5;
+          user-select: all;
+      }
+      
+      .prompt-field {
+          background: #e3f2fd;
+          color: #1565c0;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-weight: 500;
+      }
+      
+      .select-tip {
+          background: #e8f5e8;
+          color: #2e7d32;
+          padding: 0.5rem;
+          border-radius: 5px;
+          margin-top: 1rem;
+          font-size: 0.9rem;
+          font-style: italic;
+      }
+      
+      .google-footer {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+          padding: 2rem;
+          text-align: center;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      @media (max-width: 768px) {
+          .main-title {
+              font-size: 2rem;
+          }
+          
+          .enhancements-grid {
+              grid-template-columns: 1fr;
+          }
+          
+          .modal-content {
+              width: 95%;
+              margin: 5% auto;
+          }
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <header>
+          <h1 class="main-title">🎨 Creative Enhancements to Existing Resources</h1>
+          <p class="subtitle">Transform your current materials with engaging examples, inclusive content, and innovative instructional strategies</p>
+          <div class="intro-text">
+              Earlier in this course, you used an AI tool to help with common activities, including planning a trip and creating an icebreaker. Now, click on each image to reveal even more tactics for saving you time, personalizing student learning, and sparking creativity.
+              <br><br><strong>Click each enhancement type to reveal detailed prompts and templates!</strong>
+          </div>
+      </header>
+
+      <div class="enhancements-grid">
+          <div class="enhancement-card" onclick="openModal('engagingExamples')">
+              <div class="enhancement-icon">
+                  <span>⚽</span>
+              </div>
+              <div class="enhancement-content">
+                  <h3 class="enhancement-title">Generate Engaging Examples</h3>
+                  <p class="enhancement-description">Create compelling examples using famous sports players or other relatable figures to make learning content more engaging and memorable for students.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+
+          <div class="enhancement-card" onclick="openModal('appropriateExamples')">
+              <div class="enhancement-icon">
+                  <span>🌟</span>
+              </div>
+              <div class="enhancement-content">
+                  <h3 class="enhancement-title">Develop Appropriate Examples</h3>
+                  <p class="enhancement-description">Enhance assignments with inclusive, classroom-appropriate examples that reflect diverse perspectives and create meaningful learning experiences.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+
+          <div class="enhancement-card" onclick="openModal('writingExercises')">
+              <div class="enhancement-icon">
+                  <span>✍️</span>
+              </div>
+              <div class="enhancement-content">
+                  <h3 class="enhancement-title">Create Engaging In-Class Writing Exercises</h3>
+                  <p class="enhancement-description">Design dynamic writing assignments with specific goals and time constraints that keep students focused and productive during class time.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+
+          <div class="enhancement-card" onclick="openModal('instructionalStrategies')">
+              <div class="enhancement-icon">
+                  <span>🎯</span>
+              </div>
+              <div class="enhancement-content">
+                  <h3 class="enhancement-title">Apply Instructional Strategies</h3>
+                  <p class="enhancement-description">Integrate specific instructional strategies into your activities to enhance learning outcomes and student engagement across different subjects.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+      </div>
+
+      <div class="google-footer">
+          <p><strong>Google for Education AI Prompt Library</strong></p>
+          <p>© 2024 Google LLC 1600 Amphitheatre Parkway, Mountain View, CA 94043</p>
+      </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="engagingExamplesModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('engagingExamplesModal')">&times;</span>
+              <h2 class="modal-title">⚽ Generate Engaging Examples</h2>
+          </div>
+          <div class="modal-body">
+              <p>Create compelling examples using famous sports players or other relatable figures to make learning content more engaging and memorable for students.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Detailed Sports Examples Template:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. Based on the following details, generate five examples using famous sports players.
+
+Subject: <span class="prompt-field">[Enter subject]</span>
+Grade level: <span class="prompt-field">[Enter grade level]</span>
+Learning objectives: 
+● <span class="prompt-field">[Enter learning objective]</span>
+● <span class="prompt-field">[Enter learning objective]</span>
+● <span class="prompt-field">[Enter learning objective]</span>
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Quick Sports Examples Version:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. Generate five examples for a <span class="prompt-field">[Enter grade level]</span> class about <span class="prompt-field">[Enter subject]</span> using famous sports players. The examples should help students achieve <span class="prompt-field">[Enter learning objectives]</span>.
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="appropriateExamplesModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('appropriateExamplesModal')">&times;</span>
+              <h2 class="modal-title">🌟 Develop Appropriate Examples</h2>
+          </div>
+          <div class="modal-body">
+              <p>Enhance assignments with inclusive, classroom-appropriate examples that reflect diverse perspectives and create meaningful learning experiences for all students.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Inclusive Examples Template:</h3>
+                  <div class="prompt-text">
+I am an <span class="prompt-field">[Enter your role]</span>. Here is a <span class="prompt-field">[Enter subject]</span> assignment for my <span class="prompt-field">[Enter grade level and subject]</span> students. Enhance it to include inclusive, classroom appropriate examples, such as by asking students to create a review of the poem for a teen literary magazine:
+
+<span class="prompt-field">[Enter assignment]</span>
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="writingExercisesModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('writingExercisesModal')">&times;</span>
+              <h2 class="modal-title">✍️ Create Engaging In-Class Writing Exercises</h2>
+          </div>
+          <div class="modal-body">
+              <p>Design dynamic writing assignments with specific goals and time constraints that keep students focused and productive during class time.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Differentiated Writing Exercise Template:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. Suggest ways to differentiate project tasks for students with different levels of mastery and experience with <span class="prompt-field">[Enter subject]</span>. They must achieve <span class="prompt-field">[Enter project goals]</span> by the end of the project.
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Timed Writing Assignment Template:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. Create an in-class writing assignment for my students about <span class="prompt-field">[Enter writing topic]</span>. The in-class writing assignment should include <span class="prompt-field">[Enter specific goals]</span> about <span class="prompt-field">[Enter topic]</span>. Students must complete their work in <span class="prompt-field">[number]</span> minutes.
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="instructionalStrategiesModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('instructionalStrategiesModal')">&times;</span>
+              <h2 class="modal-title">🎯 Apply Instructional Strategies</h2>
+          </div>
+          <div class="modal-body">
+              <p>Integrate specific instructional strategies into your activities to enhance learning outcomes and student engagement across different subjects and grade levels.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Detailed Instructional Strategy Template:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. Based on the following details, create an activity for <span class="prompt-field">[Enter grade]</span> students studying <span class="prompt-field">[Enter class topic]</span> that uses <span class="prompt-field">[Enter instructional strategy]</span>.
+
+Materials: <span class="prompt-field">[Paste in textbook chapters or sections, lecture notes, handouts, or other relevant resources]</span>
+Reading level: <span class="prompt-field">[State the desired reading level for the review activity]</span>
+Learning objectives: 
+● <span class="prompt-field">[Enter learning objective]</span>
+● <span class="prompt-field">[Enter learning objective]</span>
+● <span class="prompt-field">[Enter learning objective]</span>
+
+Format: <span class="prompt-field">[Specify the desired format, like bullet points, a timeline, a comparison chart, etc.]</span>
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Quick Instructional Strategy Version:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. Create an activity for <span class="prompt-field">[Enter grade]</span> students studying <span class="prompt-field">[Enter class topic]</span> that uses <span class="prompt-field">[Enter instructional strategy]</span>. The activity should help students achieve <span class="prompt-field">[Enter learning objectives]</span>.
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      function openModal(modalId) {
+          const modal = document.getElementById(modalId + 'Modal');
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(modalId) {
+          const modal = document.getElementById(modalId);
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+      }
+
+      // Close modal when clicking outside of it
+      window.onclick = function(event) {
+          const modals = document.querySelectorAll('.modal');
+          modals.forEach(modal => {
+              if (event.target === modal) {
+                  modal.style.display = 'none';
+                  document.body.style.overflow = 'auto';
+              }
+          });
+      }
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+              const modals = document.querySelectorAll('.modal');
+              modals.forEach(modal => {
+                  if (modal.style.display === 'block') {
+                      modal.style.display = 'none';
+                      document.body.style.overflow = 'auto';
+                  }
+              });
+          }
+      });
+  </script>
+
+  <!-- Return to Index Link -->
+  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <a href="index.html" style="
+          display: inline-block;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          text-decoration: none;
+          padding: 12px 20px;
+          border-radius: 50px;
+          font-weight: 600;
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          transition: all 0.3s ease;
+          font-size: 14px;
+      " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'">
+          ← Back to Home
+      </a>
+  </div>
+</body>
+</html>

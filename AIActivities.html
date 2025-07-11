@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Activities - Interactive Guide</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      
+      body {
+          font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+          line-height: 1.6;
+          color: #202124;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+      }
+      
+      header {
+          text-align: center;
+          color: white;
+          margin-bottom: 3rem;
+      }
+      
+      .main-title {
+          font-size: 3rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      }
+      
+      .subtitle {
+          font-size: 1.3rem;
+          opacity: 0.9;
+          max-width: 800px;
+          margin: 0 auto 2rem;
+      }
+      
+      .intro-text {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2rem;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          margin-bottom: 3rem;
+          font-size: 1.1rem;
+          line-height: 1.8;
+      }
+      
+      .activities-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 2rem;
+          margin-bottom: 3rem;
+      }
+      
+      .activity-card {
+          background: white;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
+          cursor: pointer;
+          position: relative;
+      }
+      
+      .activity-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      
+      .activity-icon {
+          height: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 4rem;
+          color: white;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .activity-icon::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, #4285f4 0%, #ea4335 25%, #fbbc04 50%, #34a853 75%, #9aa0a6 100%);
+          opacity: 0.9;
+      }
+      
+      .activity-icon span {
+          position: relative;
+          z-index: 2;
+      }
+      
+      .activity-content {
+          padding: 2rem;
+      }
+      
+      .activity-title {
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          color: #333;
+      }
+      
+      .activity-description {
+          color: #666;
+          margin-bottom: 1.5rem;
+          line-height: 1.6;
+      }
+      
+      .try-button {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          border: none;
+          padding: 0.8rem 1.5rem;
+          border-radius: 25px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 0.9rem;
+      }
+      
+      .try-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+      
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(5px);
+      }
+      
+      .modal-content {
+          background-color: white;
+          margin: 2% auto;
+          padding: 0;
+          border-radius: 20px;
+          width: 90%;
+          max-width: 800px;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+          animation: modalSlideIn 0.3s ease;
+      }
+      
+      @keyframes modalSlideIn {
+          from {
+              opacity: 0;
+              transform: translateY(-50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      .modal-header {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          padding: 2rem;
+          border-radius: 20px 20px 0 0;
+      }
+      
+      .modal-title {
+          font-size: 2rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+      }
+      
+      .modal-body {
+          padding: 2rem;
+      }
+      
+      .close {
+          position: absolute;
+          right: 1.5rem;
+          top: 1.5rem;
+          color: white;
+          font-size: 2rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+      }
+      
+      .close:hover {
+          transform: scale(1.1);
+          opacity: 0.8;
+      }
+      
+      .prompt-section {
+          background: #f8f9fa;
+          padding: 1.5rem;
+          border-radius: 10px;
+          margin: 1.5rem 0;
+          border-left: 4px solid #667eea;
+      }
+      
+      .prompt-title {
+          font-weight: 700;
+          margin-bottom: 1rem;
+          color: #333;
+      }
+      
+      .prompt-text {
+          background: white;
+          padding: 1rem;
+          border-radius: 8px;
+          border: 1px solid #e9ecef;
+          font-family: 'Courier New', monospace;
+          font-size: 0.9rem;
+          line-height: 1.5;
+          user-select: all;
+      }
+      
+      .prompt-field {
+          background: #e3f2fd;
+          color: #1565c0;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-weight: 500;
+      }
+      
+      .select-tip {
+          background: #e8f5e8;
+          color: #2e7d32;
+          padding: 0.5rem;
+          border-radius: 5px;
+          margin-top: 1rem;
+          font-size: 0.9rem;
+          font-style: italic;
+      }
+      
+      .google-footer {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+          padding: 2rem;
+          text-align: center;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      @media (max-width: 768px) {
+          .main-title {
+              font-size: 2rem;
+          }
+          
+          .activities-grid {
+              grid-template-columns: 1fr;
+          }
+          
+          .modal-content {
+              width: 95%;
+              margin: 5% auto;
+          }
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <header>
+          <h1 class="main-title">🎯 AI Activities</h1>
+          <p class="subtitle">Create engaging and interactive activities to enhance student learning and participation</p>
+          <div class="intro-text">
+              Earlier in this course, you used an AI tool to help with common activities, including planning a trip and creating an icebreaker. Now, click on each image to reveal even more tactics for saving you time, personalizing student learning, and sparking creativity.
+              <br><br><strong>Click each activity type to reveal detailed prompts and templates!</strong>
+          </div>
+      </header>
+
+      <div class="activities-grid">
+          <div class="activity-card" onclick="openModal('developActivity')">
+              <div class="activity-icon">
+                  <span>🚀</span>
+              </div>
+              <div class="activity-content">
+                  <h3 class="activity-title">Develop an Activity from Scratch</h3>
+                  <p class="activity-description">Create engaging and interactive activities that help students achieve specific learning outcomes with clear instructions and expectations.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+
+          <div class="activity-card" onclick="openModal('reviewActivity')">
+              <div class="activity-icon">
+                  <span>📚</span>
+              </div>
+              <div class="activity-content">
+                  <h3 class="activity-title">Generate a Review Activity</h3>
+                  <p class="activity-description">Design comprehensive review activities that enable students to reinforce their understanding of specified content and concepts.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+
+          <div class="activity-card" onclick="openModal('studentIntros')">
+              <div class="activity-icon">
+                  <span>👥</span>
+              </div>
+              <div class="activity-content">
+                  <h3 class="activity-title">Facilitate Student Introductions</h3>
+                  <p class="activity-description">Create ability-inclusive icebreaker activities that help students get to know each other in a comfortable and engaging way.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+
+          <div class="activity-card" onclick="openModal('modifyActivities')">
+              <div class="activity-icon">
+                  <span>🔧</span>
+              </div>
+              <div class="activity-content">
+                  <h3 class="activity-title">Modify Existing Activities</h3>
+                  <p class="activity-description">Enhance and adapt your current project activities to better suit your students' specific needs, interests, and learning objectives.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+      </div>
+
+      <div class="google-footer">
+          <p><strong>Google for Education AI Prompt Library</strong></p>
+          <p>© 2024 Google LLC 1600 Amphitheatre Parkway, Mountain View, CA 94043</p>
+      </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="developActivityModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('developActivityModal')">&times;</span>
+              <h2 class="modal-title">🚀 Develop an Activity from Scratch</h2>
+          </div>
+          <div class="modal-body">
+              <p>Create engaging and interactive activities that will help your students achieve the desired learning outcomes with structured objectives, clear instructions, and appropriate resources.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Activity Development Template:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. Based on the following information, suggest an engaging and interactive activity that will help my students achieve the desired learning outcomes:
+
+Subject: <span class="prompt-field">[Enter subject]</span>
+Grade level: <span class="prompt-field">[Enter grade level]</span>
+Learning objectives: 
+<span class="prompt-field">[Enter learning objective]</span>
+<span class="prompt-field">[Enter learning objective]</span>
+<span class="prompt-field">[Enter learning objective]</span>
+
+Clear instructions and expectations: <span class="prompt-field">[Explain how the activity will be conducted and what students should accomplish]</span>
+Resources: <span class="prompt-field">[List required resources]</span>
+Constraints: <span class="prompt-field">[Note any potential limitations]</span>
+Specific theme or context: <span class="prompt-field">[Include information about the activity's theme or the context in which it will exist]</span>
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="reviewActivityModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('reviewActivityModal')">&times;</span>
+              <h2 class="modal-title">📚 Generate a Review Activity</h2>
+          </div>
+          <div class="modal-body">
+              <p>Develop engaging activities that enable students to review and reinforce their understanding of specified content, promoting critical thinking and deeper learning.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Comprehensive Review Activity Template:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. Based on the following information, develop an engaging activity that will enable students to review the specified content:
+
+Subject: <span class="prompt-field">[Enter subject]</span>
+Grade level: <span class="prompt-field">[Enter grade level]</span>
+Learning objectives: 
+<span class="prompt-field">[Enter learning objective]</span>
+<span class="prompt-field">[Enter learning objective]</span>
+<span class="prompt-field">[Enter learning objective]</span>
+
+Knowledge, skills, and understanding: <span class="prompt-field">[Note key facts, concepts, or processes covered in the material]</span>
+Critical thinking: <span class="prompt-field">[Explain whether the students will be analyzing information, drawing conclusions, evaluating arguments, problem-solving, etc.]</span>
+Content and material: <span class="prompt-field">[Specify the specific content area, lesson, or topic you want to focus on]</span>
+Materials: <span class="prompt-field">[Paste in textbook chapters or sections, lecture notes, handouts, or other relevant resources]</span>
+Reading level: <span class="prompt-field">[State the desired reading level for the review activity]</span>
+Activity type and format: <span class="prompt-field">[Describe the desired type of activity, such as quiz, game, simulation, collaborative project, etc.]</span>
+Difficulty and length: <span class="prompt-field">[Indicate the difficulty level and length]</span>
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Quick Review Activity Version:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. Develop an engaging activity that will enable <span class="prompt-field">[Enter grade level and subject]</span> students to review <span class="prompt-field">[Enter content and material]</span>. This activity should help students achieve <span class="prompt-field">[Enter learning objectives]</span> in <span class="prompt-field">[number]</span> minutes.
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="studentIntrosModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('studentIntrosModal')">&times;</span>
+              <h2 class="modal-title">👥 Facilitate Student Introductions</h2>
+          </div>
+          <div class="modal-body">
+              <p>Create inclusive icebreaker activities that help students get to know each other while accommodating different abilities and comfort levels.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Student Introduction Activity Template:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. I need three ability-inclusive ideas to help <span class="prompt-field">[Enter grade level and subject]</span> students get to know each other.
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="modifyActivitiesModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('modifyActivitiesModal')">&times;</span>
+              <h2 class="modal-title">🔧 Modify Existing Activities</h2>
+          </div>
+          <div class="modal-body">
+              <p>Enhance and adapt your current project activities to better align with your students' needs, interests, and learning objectives for improved engagement and outcomes.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Detailed Activity Modification Template:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. Modify the following project activities to better suit the needs and interests of my students:
+
+Project title: <span class="prompt-field">[Enter the title of the project]</span>
+Subject: <span class="prompt-field">[State the subject of the project]</span>
+Grade level: <span class="prompt-field">[Enter grade level]</span>
+Topic: <span class="prompt-field">[Note the specific topic covered by the project]</span>
+Current project description: <span class="prompt-field">[Provide a brief description of the project as it currently is]</span>
+Target audience: <span class="prompt-field">[Describe the students who will be participating in the project and their particular interests]</span>
+
+Desired Modifications:
+Areas for modification: <span class="prompt-field">[Specify which aspects of the project you want to modify, such as the difficulty level, scope, assessment methods, or specific activities]</span>
+Reasons for modification: <span class="prompt-field">[Explain why you want to make these modifications, such as making the project more engaging, accessible, or aligned with student interests]</span>
+Desired outcomes: <span class="prompt-field">[Describe what you hope to achieve by modifying the project, such as promoting deeper learning, fostering collaboration, or addressing individual needs]</span>
+Additional information: <span class="prompt-field">[Include any other relevant details, such as available resources, time constraints, or specific learning objectives you want to address]</span>
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Quick Activity Modification Version:</h3>
+                  <div class="prompt-text">
+I am a <span class="prompt-field">[Enter your role]</span>. Modify the following project activities to better suit the needs and interests of my <span class="prompt-field">[Enter grade level]</span> students: <span class="prompt-field">[Describe the project]</span>. My students are <span class="prompt-field">[Describe the students who will be participating in the project and their particular interests]</span>.
+                  </div>
+                  <div class="select-tip">💡 Tip: Select all the text above to copy it to your clipboard</div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      function openModal(modalId) {
+          const modal = document.getElementById(modalId + 'Modal');
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(modalId) {
+          const modal = document.getElementById(modalId);
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+      }
+
+      // Close modal when clicking outside of it
+      window.onclick = function(event) {
+          const modals = document.querySelectorAll('.modal');
+          modals.forEach(modal => {
+              if (event.target === modal) {
+                  modal.style.display = 'none';
+                  document.body.style.overflow = 'auto';
+              }
+          });
+      }
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+              const modals = document.querySelectorAll('.modal');
+              modals.forEach(modal => {
+                  if (modal.style.display === 'block') {
+                      modal.style.display = 'none';
+                      document.body.style.overflow = 'auto';
+                  }
+              });
+          }
+      });
+  </script>
+
+  <!-- Return to Index Link -->
+  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <a href="index.html" style="
+          display: inline-block;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          text-decoration: none;
+          padding: 12px 20px;
+          border-radius: 50px;
+          font-weight: 600;
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          transition: all 0.3s ease;
+          font-size: 14px;
+      " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'">
+          ← Back to Home
+      </a>
+  </div>
+</body>
+</html>

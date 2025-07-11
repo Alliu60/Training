@@ -892,4 +892,96 @@
                   
                   <div class="demo-step">
                       <div class="demo-step-number">3</div>
-                      <h3 class="demo-step-title">Ask Questions</h
+                      <h3 class="demo-step-title">Ask Questions</h3>
+                      <p class="demo-step-description">Interact with your documents through natural language queries and get precise, contextual answers.</p>
+                  </div>
+
+                  <div class="demo-step">
+                      <div class="demo-step-number">4</div>
+                      <h3 class="demo-step-title">Generate Audio</h3>
+                      <p class="demo-step-description">Create podcast-style audio discussions based on your research materials.</p>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <section class="testimonial-section">
+          <div class="container">
+              <div class="section-header">
+                  <h2 class="section-title">User Success Stories</h2>
+                  <p class="section-subtitle">See how NotebookLM transforms research and learning</p>
+              </div>
+
+              <div class="testimonial-card">
+                  <p class="testimonial-quote">
+                      "NotebookLM has revolutionized my research process. The ability to have conversations with my documents and generate audio summaries saves me hours every week."
+                  </p>
+                  <div class="testimonial-author">
+                      <strong>Dr. Emily Rodriguez</strong><br>
+                      <span>Academic Researcher</span>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <script>
+          function generateNotebookResponse() {
+              const query = document.getElementById('notebookQuery').value;
+              const resultDiv = document.getElementById('notebookResult');
+
+              if (!query.trim()) {
+                  resultDiv.innerHTML = '<p style="color: #ea4335;">Please enter a query first!</p>';
+                  return;
+              }
+
+              const responses = [
+                  {
+                      type: "Document Analysis",
+                      content: `Based on your uploaded documents, here's what I found about "${query}". I've analyzed the content and can provide specific citations and cross-references.`
+                  },
+                  {
+                      type: "Research Summary",
+                      content: `I've synthesized information from your sources regarding "${query}". Here's a comprehensive summary with key insights and connections.`
+                  },
+                  {
+                      type: "Audio Generation",
+                      content: `I can create a podcast-style discussion about "${query}" based on your research materials. Would you like me to generate an audio conversation?`
+                  }
+              ];
+
+              const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+
+              resultDiv.innerHTML = `
+                  <div style="background: linear-gradient(135deg, #4285f4 0%, #34a853 100%); color: white; padding: 20px; border-radius: 12px; margin-top: 15px;">
+                      <h4 style="margin-bottom: 15px;">📚 NotebookLM Response</h4>
+                      <p><strong>Response Type:</strong> ${randomResponse.type}</p>
+                      <p style="margin-top: 10px;">${randomResponse.content}</p>
+                      <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
+                          🎧 This is a simulated response. Actual NotebookLM provides detailed analysis based on your specific documents.
+                      </p>
+                  </div>
+              `;
+          }
+      </script>
+
+      <!-- Return to Index Link -->
+      <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+          <a href="index.html" style="
+              display: inline-block;
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              color: white;
+              text-decoration: none;
+              padding: 12px 20px;
+              border-radius: 50px;
+              font-weight: 600;
+              box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+              transition: all 0.3s ease;
+              font-size: 14px;
+          " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'">
+              ← Back to Home
+          </a>
+      </div>
+
+  </body>
+  </html>

@@ -43,12 +43,76 @@ This repository contains interactive HTML guides and educational resources for m
 - Google's AI-powered research and note-taking tool
 - [📖 Learn More](NotebookLM.html)
 
-### 7. **Google Gemini** 🌟
+### 7. **Google Gemini 2.5** 🌟
 - **More Powerful than ChatGPT-4o**: Advanced AI capabilities and performance
 - **Deep Research**: Comprehensive research and analysis tools
 - **Canvas**: Creative workspace for visual projects and collaboration
 - **Image Creation**: AI-powered image generation and editing
 - [📖 Learn More](Gemini2_5.html)
+
+## 🎓 Educational AI Tools
+
+### 8. **AI Tools for Education** 📚
+- **Comprehensive Guide**: Interactive overview of essential AI tools for educational environments
+- **Teaching Enhancement**: Tools specifically designed for educators and classroom instruction
+- **Implementation Strategies**: Practical approaches to integrating AI in education
+- [📖 Learn More](AITools-Education.html)
+
+### 9. **AI Activities** 🎯
+- **Interactive Learning**: Hands-on AI activities and exercises for practical application
+- **Engagement Tools**: Activities designed to enhance understanding through interaction
+- **Skill Development**: Progressive exercises for building AI literacy
+- [📖 Learn More](AIActivities.html)
+
+### 10. **AI Creative Enhancements** 🎨
+- **Creative AI Tools**: Explore AI-powered tools for artistic expression and content creation
+- **Enhancement Techniques**: Methods for improving creative workflows with AI
+- **Innovation Strategies**: Approaches to creative problem-solving using AI
+- [📖 Learn More](AICreativeEnhancements.html)
+
+### 11. **AI Differentiation & Personalized Instruction** 👥
+- **Personalized Learning**: AI-driven approaches to individualized education
+- **Differentiation Strategies**: Tools for adapting instruction to diverse student needs
+- **Adaptive Technologies**: AI systems that adjust to learning preferences and abilities
+- [📖 Learn More](AIDifferentiation-PersonalizedInstruction.html)
+
+### 12. **AI Lesson Plans** 📝
+- **Smart Lesson Planning**: AI-powered tools for creating effective lesson plans
+- **Automated Assistance**: AI help for curriculum development and optimization
+- **Educational Design**: Strategies for AI-enhanced instructional design
+- [📖 Learn More](AILessonPlans.html)
+
+### 13. **AI Teaching Activities** 🏫
+- **Teaching Enhancement**: Comprehensive collection of AI-powered teaching methodologies
+- **Classroom Integration**: Practical activities for incorporating AI in teaching
+- **Instructional Innovation**: Modern approaches to AI-enhanced education
+- [📖 Learn More](AITeachingActivities.html)
+
+## 🔬 Advanced AI Features
+
+### 14. **Canvas for Google Gemini** 🖼️
+- **AI Integration**: Advanced Canvas features with Google Gemini integration
+- **Collaborative Projects**: AI-powered creative collaboration tools
+- **Visual Workspace**: Enhanced creative workspace for AI-assisted projects
+- [📖 Learn More](CanvasGoogleGemini.html)
+
+### 15. **Deep Research** 🔍
+- **AI-Powered Analysis**: Advanced research capabilities using AI for comprehensive analysis
+- **Insights Generation**: Automated insights and pattern recognition
+- **Research Automation**: Tools for streamlining research processes
+- [📖 Learn More](DeepResearch.html)
+
+### 16. **AI-Powered Teaching Tools** 💡
+- **Prompt Engineering**: Master the art of prompt engineering for educational applications
+- **AI Communication**: Effective strategies for communicating with AI systems
+- **Teaching Optimization**: AI tools specifically designed for teaching enhancement
+- [📖 Learn More](Prompt-Teaching1.html)
+
+### 17. **Teacher's AI Co-Pilot: NotebookLM** 🤖
+- **Teaching Assistant**: Comprehensive analysis of NotebookLM as an AI co-pilot for educators
+- **Professional Development**: Tools for enhancing teaching effectiveness with AI
+- **Educational Innovation**: Modern approaches to AI-assisted teaching
+- [📖 Learn More](TeacherCopilot_%20GoogleNotebookLM.html)
 
 ## 🎯 Getting Started
 
@@ -72,17 +136,27 @@ This repository contains interactive HTML guides and educational resources for m
 
 ```
 Training/
-├── index.html              # Main landing page with all tool links
-├── Canva2025Education.html # Canva 2025 comprehensive guide
-├── NapkinAI.html          # Napkin AI visualization guide
-├── GammaAI.html           # Gamma AI content creation guide
-├── FeloAI.html            # Felo AI research assistant guide
-├── GrokAI.html            # Grok AI advanced features guide
-├── NotebookLM.html        # NotebookLM learning guide
-├── Gemini2_5.html         # Google Gemini complete guide
-├── README.md              # This file
-├── sitemap.xml            # Site structure for search engines
-└── BingSiteAuth.xml       # Bing webmaster verification
+├── index.html                                    # Main landing page with all tool links
+├── Canva2025Education.html                      # Canva 2025 comprehensive guide
+├── NapkinAI.html                                # Napkin AI visualization guide
+├── GammaAI.html                                 # Gamma AI content creation guide
+├── FeloAI.html                                  # Felo AI research assistant guide
+├── GrokAI.html                                  # Grok AI advanced features guide
+├── NotebookLM.html                              # NotebookLM learning guide
+├── Gemini2_5.html                               # Google Gemini complete guide
+├── AIActivities.html                            # AI Activities interactive guide
+├── AICreativeEnhancements.html                  # AI Creative enhancement tools
+├── AIDifferentiation-PersonalizedInstruction.html # AI differentiation & personalized learning
+├── AILessonPlans.html                           # AI-powered lesson planning guide
+├── AITeachingActivities.html                    # AI teaching activities collection
+├── AITools-Education.html                       # Educational AI tools overview
+├── CanvasGoogleGemini.html                      # Canvas integration with Gemini
+├── DeepResearch.html                            # AI-powered research analysis
+├── Prompt-Teaching1.html                        # AI prompting for teaching
+├── TeacherCopilot_ GoogleNotebookLM.html        # NotebookLM as teaching co-pilot
+├── README.md                                    # This file
+├── sitemap.xml                                  # Site structure for search engines
+└── BingSiteAuth.xml                             # Bing webmaster verification
 ```
 
 ## 🌐 Live Demo

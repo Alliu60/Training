@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Research - AI-Powered Analysis Engine</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      
+      body {
+          font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+          line-height: 1.6;
+          color: #202124;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+      }
+      
+      header {
+          text-align: center;
+          color: white;
+          margin-bottom: 3rem;
+      }
+      
+      .main-title {
+          font-size: 3rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      }
+      
+      .subtitle {
+          font-size: 1.3rem;
+          opacity: 0.9;
+          max-width: 800px;
+          margin: 0 auto 2rem;
+      }
+      
+      .intro-text {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2rem;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          margin-bottom: 3rem;
+          font-size: 1.1rem;
+          line-height: 1.8;
+      }
+      
+      .learning-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 2rem;
+          margin-bottom: 3rem;
+      }
+      
+      .learning-card {
+          background: white;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
+          cursor: pointer;
+          position: relative;
+      }
+      
+      .learning-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      
+      .learning-icon {
+          height: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 4rem;
+          color: white;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .learning-icon::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, #4285f4 0%, #ea4335 25%, #fbbc04 50%, #34a853 75%, #9aa0a6 100%);
+          opacity: 0.9;
+      }
+      
+      .learning-icon span {
+          position: relative;
+          z-index: 2;
+      }
+      
+      .learning-content {
+          padding: 2rem;
+      }
+      
+      .learning-title {
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          color: #333;
+      }
+      
+      .learning-description {
+          color: #666;
+          margin-bottom: 1.5rem;
+          line-height: 1.6;
+      }
+      
+      .try-button {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          border: none;
+          padding: 0.8rem 1.5rem;
+          border-radius: 25px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 0.9rem;
+      }
+      
+      .try-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+      
+      .features-section {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+          padding: 2rem;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          margin-bottom: 3rem;
+      }
+      
+      .features-section h2 {
+          font-size: 2rem;
+          margin-bottom: 1.5rem;
+          text-align: center;
+      }
+      
+      .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+          margin-top: 2rem;
+      }
+      
+      .feature {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 1.5rem;
+          border-radius: 10px;
+          border-left: 4px solid #fbbc04;
+      }
+      
+      .feature-title {
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          color: #fbbc04;
+      }
+      
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(5px);
+      }
+      
+      .modal-content {
+          background-color: white;
+          margin: 2% auto;
+          padding: 0;
+          border-radius: 20px;
+          width: 90%;
+          max-width: 900px;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+          animation: modalSlideIn 0.3s ease;
+      }
+      
+      @keyframes modalSlideIn {
+          from {
+              opacity: 0;
+              transform: translateY(-50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      .modal-header {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          padding: 2rem;
+          border-radius: 20px 20px 0 0;
+      }
+      
+      .modal-title {
+          font-size: 2rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+      }
+      
+      .modal-body {
+          padding: 2rem;
+      }
+      
+      .close {
+          position: absolute;
+          right: 1.5rem;
+          top: 1.5rem;
+          color: white;
+          font-size: 2rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+      }
+      
+      .close:hover {
+          transform: scale(1.1);
+          opacity: 0.8;
+      }
+      
+      .quiz-container {
+          background: #f8f9fa;
+          border-radius: 10px;
+          padding: 2rem;
+          margin: 1rem 0;
+      }
+      
+      .quiz-question {
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          color: #333;
+      }
+      
+      .quiz-options {
+          list-style: none;
+          padding: 0;
+      }
+      
+      .quiz-options li {
+          background: white;
+          margin: 0.5rem 0;
+          padding: 1rem;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+      }
+      
+      .quiz-options li:hover {
+          background: #e3f2fd;
+          border-color: #4285f4;
+      }
+      
+      .quiz-options li.selected {
+          background: #4285f4;
+          color: white;
+      }
+      
+      .quiz-options li.correct {
+          background: #34a853;
+          color: white;
+      }
+      
+      .quiz-options li.incorrect {
+          background: #ea4335;
+          color: white;
+      }
+      
+      .quiz-button {
+          background: #4285f4;
+          color: white;
+          border: none;
+          padding: 0.8rem 1.5rem;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: 600;
+          margin-top: 1rem;
+      }
+      
+      .quiz-explanation {
+          background: #e8f5e8;
+          border-left: 4px solid #34a853;
+          padding: 1rem;
+          margin-top: 1rem;
+          border-radius: 5px;
+          display: none;
+      }
+      
+      .prompt-section {
+          background: #f8f9fa;
+          padding: 2rem;
+          border-radius: 10px;
+          margin: 1rem 0;
+          border-left: 4px solid #4285f4;
+      }
+      
+      .prompt-title {
+          font-weight: 700;
+          margin-bottom: 1rem;
+          color: #333;
+          font-size: 1.2rem;
+      }
+      
+      .prompt-content {
+          color: #555;
+          line-height: 1.7;
+      }
+      
+      .prompt-content h4 {
+          color: #4285f4;
+          margin: 1.5rem 0 0.5rem 0;
+          font-size: 1.1rem;
+      }
+      
+      .prompt-content ul {
+          margin: 0.5rem 0 1rem 1.5rem;
+      }
+      
+      .prompt-content li {
+          margin-bottom: 0.5rem;
+      }
+      
+      .highlight-box {
+          background: #e3f2fd;
+          border: 1px solid #4285f4;
+          border-radius: 8px;
+          padding: 1rem;
+          margin: 1rem 0;
+      }
+      
+      .highlight-box strong {
+          color: #1565c0;
+      }
+      
+      .google-footer {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+          padding: 2rem;
+          text-align: center;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      @media (max-width: 768px) {
+          .main-title {
+              font-size: 2rem;
+          }
+          
+          .learning-grid {
+              grid-template-columns: 1fr;
+          }
+          
+          .features-grid {
+              grid-template-columns: 1fr;
+          }
+          
+          .modal-content {
+              width: 95%;
+              margin: 5% auto;
+          }
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <header>
+          <h1 class="main-title">🔍 Deep Research</h1>
+          <p class="subtitle">Google Gemini's AI-Powered Engine for In-Depth Analysis</p>
+          <div class="intro-text">
+              Earlier in this course, you used an AI tool to help with common activities, including planning a trip and creating an icebreaker. Now, click on each image to reveal even more tactics for saving you time, personalizing student learning, and sparking creativity.
+              <br><br><strong>Explore Deep Research through interactive web pages, quizzes, and exam paper analysis!</strong>
+          </div>
+      </header>
+
+      <div class="learning-grid">
+          <div class="learning-card" onclick="openModal('webPage')">
+              <div class="learning-icon">
+                  <span>🌐</span>
+              </div>
+              <div class="learning-content">
+                  <h3 class="learning-title">Web Page Overview</h3>
+                  <p class="learning-description">Explore comprehensive information about Deep Research, its features, capabilities, and how it transforms online investigation through AI-powered analysis.</p>
+                  <button class="try-button">Explore →</button>
+              </div>
+          </div>
+
+          <div class="learning-card" onclick="openModal('quiz')">
+              <div class="learning-icon">
+                  <span>📝</span>
+              </div>
+              <div class="learning-content">
+                  <h3 class="learning-title">Interactive Quiz</h3>
+                  <p class="learning-description">Test your understanding of Deep Research concepts through interactive questions covering key features, functionality, and applications.</p>
+                  <button class="try-button">Take Quiz →</button>
+              </div>
+          </div>
+
+          <div class="learning-card" onclick="openModal('examAnalysis')">
+              <div class="learning-icon">
+                  <span>📊</span>
+              </div>
+              <div class="learning-content">
+                  <h3 class="learning-title">Exam Paper Analysis</h3>
+                  <p class="learning-description">Learn how to analyze exam paper questions thoroughly with detailed explanations of knowledge points and underlying concepts.</p>
+                  <button class="try-button">Analyze →</button>
+              </div>
+          </div>
+      </div>
+
+      <div class="features-section">
+          <h2>Key Features of Deep Research</h2>
+          <div class="features-grid">
+              <div class="feature">
+                  <div class="feature-title">AI-Powered Investigation</div>
+                  <p>Employs artificial intelligence to conduct comprehensive, multi-step research on complex topics automatically.</p>
+              </div>
+              <div class="feature">
+                  <div class="feature-title">Comprehensive Research Plans</div>
+                  <p>Creates detailed research plans that users can review and modify before AI begins its investigation work.</p>
+              </div>
+              <div class="feature">
+                  <div class="feature-title">Detailed Reports with Citations</div>
+                  <p>Generates well-structured reports complete with source citations for easy verification and further exploration.</p>
+              </div>
+              <div class="feature">
+                  <div class="feature-title">Integration with Google Tools</div>
+                  <p>Seamlessly integrates with NotebookLM and other Google Workspace tools for enhanced productivity.</p>
+              </div>
+          </div>
+      </div>
+
+      <div class="google-footer">
+          <p><strong>Deep Research - Google Gemini Advanced</strong></p>
+          <p>Powered by Gemini 2.5 Pro Model</p>
+      </div>
+  </div>
+
+  <!-- Web Page Modal -->
+  <div id="webPageModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('webPageModal')">&times;</span>
+              <h2 class="modal-title">🌐 Deep Research Overview</h2>
+          </div>
+          <div class="modal-body">
+              <h3>What is Deep Research?</h3>
+              <p>Google has introduced "Deep Research," a powerful, agentic feature within Gemini Advanced designed to transform the landscape of online investigation. This sophisticated tool moves beyond simple search queries, employing artificial intelligence to conduct comprehensive, multi-step research on complex topics.</p>
+              
+              <h3>How It Works</h3>
+              <ol>
+                  <li><strong>Research Plan Creation:</strong> Deep Research first devises a comprehensive research plan outlining various avenues to explore</li>
+                  <li><strong>Plan Review:</strong> Users can review and modify the plan before AI begins its work</li>
+                  <li><strong>Web Scouring:</strong> The AI intelligently navigates through vast amounts of information</li>
+                  <li><strong>Information Synthesis:</strong> Identifies relevant data, discerns credible sources, and pieces together information</li>
+                  <li><strong>Report Generation:</strong> Creates detailed, well-structured reports with source citations</li>
+              </ol>
+              
+              <h3>Key Benefits</h3>
+              <ul>
+                  <li>Automates laborious information gathering and synthesis</li>
+                  <li>Provides comprehensive analysis at accelerated pace</li>
+                  <li>Includes citations for easy verification</li>
+                  <li>Generates audio overviews for dynamic experience</li>
+                  <li>Integrates seamlessly with Google Workspace tools</li>
+              </ul>
+              
+              <h3>Availability</h3>
+              <p>Deep Research is currently available to subscribers of Gemini Advanced and users within Google Workspace, powered by the advanced Gemini 2.5 Pro model.</p>
+              
+              <h3>Integration Capabilities</h3>
+              <p>Generated reports and sources can be exported to NotebookLM, Google's AI-powered research and writing assistant, for further analysis and deeper exploration of subject matter.</p>
+          </div>
+      </div>
+  </div>
+
+  <!-- Quiz Modal -->
+  <div id="quizModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('quizModal')">&times;</span>
+              <h2 class="modal-title">📝 Deep Research Quiz</h2>
+          </div>
+          <div class="modal-body">
+              <div class="quiz-container" id="quiz1">
+                  <div class="quiz-question">1. What is the primary purpose of Google's Deep Research feature?</div>
+                  <ul class="quiz-options">
+                      <li onclick="selectAnswer(this, false)">A) To replace traditional search engines</li>
+                      <li onclick="selectAnswer(this, true)">B) To conduct comprehensive, multi-step research on complex topics</li>
+                      <li onclick="selectAnswer(this, false)">C) To create social media content</li>
+                      <li onclick="selectAnswer(this, false)">D) To translate languages</li>
+                  </ul>
+                  <button class="quiz-button" onclick="showExplanation('quiz1')">Show Answer</button>
+                  <div class="quiz-explanation">
+                      <strong>Correct Answer: B</strong><br>
+                      Deep Research is designed to transform online investigation by employing AI to conduct comprehensive, multi-step research on complex topics, going far beyond simple search queries.
+                  </div>
+              </div>
+
+              <div class="quiz-container" id="quiz2">
+                  <div class="quiz-question">2. Which AI model powers Deep Research?</div>
+                  <ul class="quiz-options">
+                      <li onclick="selectAnswer(this, false)">A) GPT-4</li>
+                      <li onclick="selectAnswer(this, true)">B) Gemini 2.5 Pro</li>
+                      <li onclick="selectAnswer(this, false)">C) Claude 3</li>
+                      <li onclick="selectAnswer(this, false)">D) PaLM 2</li>
+                  </ul>
+                  <button class="quiz-button" onclick="showExplanation('quiz2')">Show Answer</button>
+                  <div class="quiz-explanation">
+                      <strong>Correct Answer: B</strong><br>
+                      Deep Research is powered by the advanced Gemini 2.5 Pro model, which provides its sophisticated reasoning and analytical capabilities.
+                  </div>
+              </div>
+
+              <div class="quiz-container" id="quiz3">
+                  <div class="quiz-question">3. What can users do with the research plan before AI begins its work?</div>
+                  <ul class="quiz-options">
+                      <li onclick="selectAnswer(this, false)">A) Nothing, it's automatically executed</li>
+                      <li onclick="selectAnswer(this, true)">B) Review and modify the plan</li>
+                      <li onclick="selectAnswer(this, false)">C) Only view the plan</li>
+                      <li onclick="selectAnswer(this, false)">D) Delete the plan entirely</li>
+                  </ul>
+                  <button class="quiz-button" onclick="showExplanation('quiz3')">Show Answer</button>
+                  <div class="quiz-explanation">
+                      <strong>Correct Answer: B</strong><br>
+                      Users have the ability to review and even modify the research plan before the AI begins its work, ensuring the final output aligns with their specific needs.
+                  </div>
+              </div>
+
+              <div class="quiz-container" id="quiz4">
+                  <div class="quiz-question">4. Which Google tool can Deep Research reports be exported to?</div>
+                  <ul class="quiz-options">
+                      <li onclick="selectAnswer(this, false)">A) Google Docs</li>
+                      <li onclick="selectAnswer(this, true)">B) NotebookLM</li>
+                      <li onclick="selectAnswer(this, false)">C) Google Sheets</li>
+                      <li onclick="selectAnswer(this, false)">D) Google Drive</li>
+                  </ul>
+                  <button class="quiz-button" onclick="showExplanation('quiz4')">Show Answer</button>
+                  <div class="quiz-explanation">
+                      <strong>Correct Answer: B</strong><br>
+                      Generated reports and their sources can be exported to NotebookLM, Google's AI-powered research and writing assistant, for further analysis and deeper exploration.
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Exam Analysis Modal -->
+  <div id="examAnalysisModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('examAnalysisModal')">&times;</span>
+              <h2 class="modal-title">📊 Exam Paper Analysis Guide</h2>
+          </div>
+          <div class="modal-body">
+              <div class="prompt-section">
+                  <div class="prompt-title">Purpose and Goals</div>
+                  <div class="prompt-content">
+                      <ul>
+                          <li>Analyze exam paper questions thoroughly</li>
+                          <li>Provide detailed explanations of the knowledge points contained within each question</li>
+                          <li>Help users understand the underlying concepts and principles being tested</li>
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="prompt-section">
+                  <div class="prompt-title">Behaviors and Rules</div>
+                  <div class="prompt-content">
+                      <h4>1. Initial Inquiry:</h4>
+                      <ul>
+                          <li><strong>a)</strong> Acknowledge the user's request to analyze an exam paper</li>
+                          <li><strong>b)</strong> Ask the user to provide the exam paper questions they need assistance with</li>
+                          <li><strong>c)</strong> If the user provides a large number of questions, ask if they have any specific ones they'd like to prioritize</li>
+                      </ul>
+
+                      <h4>2. Question Analysis and Explanation:</h4>
+                      <ul>
+                          <li><strong>a)</strong> For each question, break it down into its core components and identify the key knowledge points</li>
+                          <li><strong>b)</strong> Provide a comprehensive explanation of each knowledge point, including relevant theories, formulas, concepts, or historical context</li>
+                          <li><strong>c)</strong> Explain how these knowledge points are applied within the context of the question</li>
+                          <li><strong>d)</strong> Use clear, concise language and avoid jargon where possible. If technical terms are necessary, provide brief definitions</li>
+                          <li><strong>e)</strong> Offer step-by-step solutions or thought processes for problem-solving questions</li>
+                          <li><strong>f)</strong> Suggest additional resources or topics for further study related to the knowledge points</li>
+                      </ul>
+
+                      <h4>3. Clarification and Follow-up:</h4>
+                      <ul>
+                          <li><strong>a)</strong> Encourage the user to ask follow-up questions if any part of the explanation is unclear</li>
+                          <li><strong>b)</strong> Be prepared to rephrase explanations or provide alternative examples to aid understanding</li>
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="highlight-box">
+                  <strong>Overall Tone:</strong>
+                  <ul style="margin-top: 0.5rem;">
+                      <li>Be informative, analytical, and precise</li>
+                      <li>Adopt a helpful and patient demeanor</li>
+                      <li>Maintain a professional and academic tone</li>
+                  </ul>
+              </div>
+
+              <div class="prompt-section">
+                  <div class="prompt-title">How to Use This Analysis Method</div>
+                  <div class="prompt-content">
+                      <p><strong>Step 1:</strong> Present your exam questions to the AI assistant</p>
+                      <p><strong>Step 2:</strong> The AI will break down each question into core components</p>
+                      <p><strong>Step 3:</strong> Receive detailed explanations of knowledge points and concepts</p>
+                      <p><strong>Step 4:</strong> Get step-by-step solutions and thought processes</p>
+                      <p><strong>Step 5:</strong> Ask follow-up questions for clarification if needed</p>
+                      
+                      <div class="highlight-box" style="margin-top: 1rem;">
+                          <strong>Pro Tip:</strong> This method works best when you provide clear, complete exam questions and specify which subject area or topic the questions cover.
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      function openModal(modalId) {
+          const modal = document.getElementById(modalId + 'Modal');
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(modalId) {
+          const modal = document.getElementById(modalId);
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+      }
+
+      function selectAnswer(element, isCorrect) {
+          // Remove previous selections
+          const options = element.parentNode.querySelectorAll('li');
+          options.forEach(option => {
+              option.classList.remove('selected');
+          });
+          
+          // Add selection to clicked option
+          element.classList.add('selected');
+          element.setAttribute('data-correct', isCorrect);
+      }
+
+      function showExplanation(quizId) {
+          const quizContainer = document.getElementById(quizId);
+          const options = quizContainer.querySelectorAll('.quiz-options li');
+          const explanation = quizContainer.querySelector('.quiz-explanation');
+          
+          // Show correct/incorrect colors
+          options.forEach(option => {
+              const isCorrect = option.getAttribute('data-correct') === 'true';
+              const isSelected = option.classList.contains('selected');
+              
+              if (isCorrect) {
+                  option.classList.add('correct');
+              } else if (isSelected && !isCorrect) {
+                  option.classList.add('incorrect');
+              }
+          });
+          
+          // Show explanation
+          explanation.style.display = 'block';
+      }
+
+      // Close modal when clicking outside of it
+      window.onclick = function(event) {
+          const modals = document.querySelectorAll('.modal');
+          modals.forEach(modal => {
+              if (event.target === modal) {
+                  const modalId = modal.id.replace('Modal', '');
+                  closeModal(modal.id);
+              }
+          });
+      }
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+              const modals = document.querySelectorAll('.modal');
+              modals.forEach(modal => {
+                  if (modal.style.display === 'block') {
+                      const modalId = modal.id.replace('Modal', '');
+                      closeModal(modal.id);
+                  }
+              });
+          }
+      });
+  </script>
+
+  <!-- Return to Index Link -->
+  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <a href="index.html" style="
+          display: inline-block;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          text-decoration: none;
+          padding: 12px 20px;
+          border-radius: 50px;
+          font-weight: 600;
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          transition: all 0.3s ease;
+          font-size: 14px;
+      " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'">
+          ← Back to Home
+      </a>
+  </div>
+</body>
+</html>

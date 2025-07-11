@@ -894,4 +894,102 @@
               <div class="demo-step">
                   <div class="demo-step-number">3</div>
                   <h3 class="demo-step-title">Edit AI Images</h3>
-                  <p class="demo-step-
+                  <p class="demo-step-description">Use Gamma's AI image editor to modify, enhance, or completely regenerate visuals with different styles and compositions.</p>
+              </div>
+
+              <div class="demo-step">
+                  <div class="demo-step-number">4</div>
+                  <h3 class="demo-step-title">Export & Share</h3>
+                  <p class="demo-step-description">Export your presentation in multiple formats or share directly with collaborators and audiences.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="testimonial-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">What Users Say</h2>
+              <p class="section-subtitle">Discover how Gamma AI is transforming content creation</p>
+          </div>
+
+          <div class="testimonial-card">
+              <p class="testimonial-quote">
+                  "Gamma AI has revolutionized how we create presentations. What used to take hours now takes minutes, and the quality is consistently professional."
+              </p>
+              <div class="testimonial-author">
+                  <strong>Maria Rodriguez</strong><br>
+                  <span>Marketing Director, TechCorp</span>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <script>
+      function generatePresentation() {
+          const topic = document.getElementById('presentationTopic').value;
+          const resultDiv = document.getElementById('presentationResult');
+
+          if (!topic.trim()) {
+              resultDiv.innerHTML = '<p style="color: #f5576c;">Please enter a presentation topic first!</p>';
+              return;
+          }
+
+          const templates = [
+              {
+                  title: "Professional Business",
+                  slides: ["Title Slide", "Problem Statement", "Solution Overview", "Key Benefits", "Implementation Plan", "Call to Action"],
+                  style: "Clean, corporate design with blue accents"
+              },
+              {
+                  title: "Creative Showcase",
+                  slides: ["Creative Title", "Vision Statement", "Design Process", "Portfolio Highlights", "Client Testimonials", "Next Steps"],
+                  style: "Vibrant colors with artistic elements"
+              },
+              {
+                  title: "Educational Format",
+                  slides: ["Learning Objectives", "Key Concepts", "Examples & Case Studies", "Interactive Elements", "Summary", "Resources"],
+                  style: "Friendly, accessible design with illustrations"
+              }
+          ];
+
+          const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+
+          resultDiv.innerHTML = `
+              <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 12px; margin-top: 15px;">
+                  <h4 style="margin-bottom: 15px;">🎨 Generated Presentation: "${topic}"</h4>
+                  <p><strong>Template:</strong> ${randomTemplate.title}</p>
+                  <p><strong>Style:</strong> ${randomTemplate.style}</p>
+                  <p><strong>Suggested Slides:</strong></p>
+                  <ul style="margin-left: 20px; margin-top: 10px;">
+                      ${randomTemplate.slides.map(slide => `<li>${slide}</li>`).join('')}
+                  </ul>
+                  <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
+                      ✨ AI will automatically generate content, select appropriate images, and apply consistent styling throughout your presentation.
+                  </p>
+              </div>
+          `;
+      }
+  </script>
+
+  <!-- Return to Index Link -->
+  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <a href="index.html" style="
+          display: inline-block;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          text-decoration: none;
+          padding: 12px 20px;
+          border-radius: 50px;
+          font-weight: 600;
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          transition: all 0.3s ease;
+          font-size: 14px;
+      " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'">
+          ← Back to Home
+      </a>
+  </div>
+
+</body>
+</html>

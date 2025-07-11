@@ -882,4 +882,114 @@
   <section class="gems-section">
       <div class="container">
           <div class="section-header">
-              <h2
+              <h2 class="section-title">Gemini 2.5 Pro Features</h2>
+              <p class="section-subtitle">Discover the advanced capabilities that set Gemini apart</p>
+          </div>
+
+          <div class="gems-grid">
+              <div class="gem-card">
+                  <div class="gem-icon">🧠</div>
+                  <h3>Advanced Reasoning</h3>
+                  <p>Superior logical thinking and problem-solving capabilities that surpass previous AI models.</p>
+              </div>
+
+              <div class="gem-card">
+                  <div class="gem-icon">🔍</div>
+                  <h3>Deep Research</h3>
+                  <p>Comprehensive research capabilities with real-time web access and source verification.</p>
+              </div>
+
+              <div class="gem-card">
+                  <div class="gem-icon">🎨</div>
+                  <h3>Creative Canvas</h3>
+                  <p>Interactive workspace for visual projects, diagrams, and collaborative content creation.</p>
+              </div>
+
+              <div class="gem-card">
+                  <div class="gem-icon">🖼️</div>
+                  <h3>Image Generation</h3>
+                  <p>High-quality image creation with precise control over style, composition, and details.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="testimonial-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">User Experience</h2>
+          </div>
+
+          <div class="testimonial-card">
+              <p class="testimonial-quote">
+                  "Gemini 2.5 Pro has transformed how I approach complex research and creative projects. Its ability to understand context and provide nuanced responses is remarkable."
+              </p>
+              <div class="testimonial-author">
+                  <strong>Dr. Alex Thompson</strong><br>
+                  <span>AI Research Scientist</span>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <script>
+      function generateGeminiResponse() {
+          const query = document.getElementById('geminiQuery').value;
+          const resultDiv = document.getElementById('geminiResult');
+
+          if (!query.trim()) {
+              resultDiv.innerHTML = '<p style="color: #ea4335;">Please enter a query first!</p>';
+              return;
+          }
+
+          const responses = [
+              {
+                  type: "Research Analysis",
+                  content: `Based on current research, here's a comprehensive analysis of "${query}". I've examined multiple sources and can provide detailed insights with citations and cross-references.`
+              },
+              {
+                  type: "Creative Solution",
+                  content: `For "${query}", I can help you explore creative approaches. Let me generate some innovative ideas and visual concepts that address your specific needs.`
+              },
+              {
+                  type: "Technical Explanation",
+                  content: `Regarding "${query}", I can break this down into clear, actionable steps with technical details and best practices based on the latest information.`
+              }
+          ];
+
+          const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+
+          resultDiv.innerHTML = `
+              <div style="background: linear-gradient(135deg, #4285f4 0%, #34a853 100%); color: white; padding: 20px; border-radius: 12px; margin-top: 15px;">
+                  <h4 style="margin-bottom: 15px;">🤖 Gemini 2.5 Pro Response</h4>
+                  <p><strong>Response Type:</strong> ${randomResponse.type}</p>
+                  <p style="margin-top: 10px;">${randomResponse.content}</p>
+                  <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
+                      ✨ This is a simulated response. Actual Gemini 2.5 Pro provides much more detailed and contextual answers.
+                  </p>
+              </div>
+          `;
+      }
+  </script>
+
+  <!-- Return to Index Link -->
+  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <a href="index.html" style="
+          display: inline-block;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          text-decoration: none;
+          padding: 12px 20px;
+          border-radius: 50px;
+          font-weight: 600;
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          transition: all 0.3s ease;
+          font-size: 14px;
+      " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'">
+          ← Back to Home
+      </a>
+  </div>
+
+</body>
+</html>

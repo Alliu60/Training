@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Powered Teaching Tools - Interactive Guide</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      
+      body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+      }
+      
+      header {
+          text-align: center;
+          color: white;
+          margin-bottom: 3rem;
+      }
+      
+      .main-title {
+          font-size: 3rem;
+          font-weight: 800;
+          margin-bottom: 1rem;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      }
+      
+      .subtitle {
+          font-size: 1.3rem;
+          opacity: 0.9;
+          max-width: 800px;
+          margin: 0 auto 2rem;
+      }
+      
+      .intro-text {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2rem;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          margin-bottom: 3rem;
+          font-size: 1.1rem;
+          line-height: 1.8;
+      }
+      
+      .tools-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 2rem;
+          margin-bottom: 3rem;
+      }
+      
+      .tool-card {
+          background: white;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
+          cursor: pointer;
+          position: relative;
+      }
+      
+      .tool-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      
+      .tool-icon {
+          height: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 4rem;
+          color: white;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .tool-icon::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, #4285f4 0%, #ea4335 25%, #fbbc04 50%, #34a853 75%, #9aa0a6 100%);
+          opacity: 0.9;
+      }
+      
+      .tool-icon span {
+          position: relative;
+          z-index: 2;
+      }
+      
+      .tool-content {
+          padding: 2rem;
+      }
+      
+      .tool-title {
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          color: #333;
+      }
+      
+      .tool-description {
+          color: #666;
+          margin-bottom: 1.5rem;
+          line-height: 1.6;
+      }
+      
+      .try-button {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          border: none;
+          padding: 0.8rem 1.5rem;
+          border-radius: 25px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 0.9rem;
+      }
+      
+      .try-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+      
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(5px);
+      }
+      
+      .modal-content {
+          background-color: white;
+          margin: 2% auto;
+          padding: 0;
+          border-radius: 20px;
+          width: 90%;
+          max-width: 800px;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+          animation: modalSlideIn 0.3s ease;
+      }
+      
+      @keyframes modalSlideIn {
+          from {
+              opacity: 0;
+              transform: translateY(-50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      .modal-header {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          padding: 2rem;
+          border-radius: 20px 20px 0 0;
+      }
+      
+      .modal-title {
+          font-size: 2rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+      }
+      
+      .modal-body {
+          padding: 2rem;
+      }
+      
+      .close {
+          position: absolute;
+          right: 1.5rem;
+          top: 1.5rem;
+          color: white;
+          font-size: 2rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+      }
+      
+      .close:hover {
+          transform: scale(1.1);
+          opacity: 0.8;
+      }
+      
+      .prompt-section {
+          background: #f8f9fa;
+          padding: 1.5rem;
+          border-radius: 10px;
+          margin: 1.5rem 0;
+          border-left: 4px solid #667eea;
+      }
+      
+      .prompt-title {
+          font-weight: 700;
+          margin-bottom: 1rem;
+          color: #333;
+      }
+      
+      .prompt-text {
+          background: white;
+          padding: 1rem;
+          border-radius: 8px;
+          border: 1px solid #e9ecef;
+          font-family: 'Courier New', monospace;
+          font-size: 0.9rem;
+          line-height: 1.5;
+      }
+      
+      .parts-section {
+          background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+          color: white;
+          padding: 3rem 2rem;
+          border-radius: 20px;
+          margin: 3rem 0;
+          text-align: center;
+      }
+      
+      .parts-title {
+          font-size: 2.5rem;
+          font-weight: 800;
+          margin-bottom: 1rem;
+      }
+      
+      .parts-subtitle {
+          font-size: 1.2rem;
+          margin-bottom: 2rem;
+          opacity: 0.9;
+      }
+      
+      .parts-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.5rem;
+          margin-top: 2rem;
+      }
+      
+      .part-item {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 1.5rem;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .part-letter {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+      }
+      
+      .part-name {
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+      }
+      
+      .part-description {
+          font-size: 0.9rem;
+          opacity: 0.9;
+      }
+      
+      .template-section {
+          background: white;
+          padding: 2rem;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+          margin: 2rem 0;
+      }
+      
+      .template-title {
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          color: #333;
+      }
+      
+      .template-text {
+          background: #f8f9fa;
+          padding: 1rem;
+          border-radius: 8px;
+          font-family: 'Courier New', monospace;
+          border-left: 4px solid #667eea;
+      }
+      
+      @media (max-width: 768px) {
+          .main-title {
+              font-size: 2rem;
+          }
+          
+          .tools-grid {
+              grid-template-columns: 1fr;
+          }
+          
+          .modal-content {
+              width: 95%;
+              margin: 5% auto;
+          }
+          
+          .parts-title {
+              font-size: 2rem;
+          }
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <header>
+          <h1 class="main-title">🤖 AI-Powered Teaching Tools</h1>
+          <p class="subtitle">Transform your classroom with intelligent assistance for lesson planning, communication, and student engagement</p>
+          <div class="intro-text">
+              Earlier in this course, you used an AI tool to help with common activities, including planning a trip and creating an icebreaker. Now, click on each tool below to reveal even more tactics for saving you time, personalizing student learning, and sparking creativity.
+              <br><br><strong>Click each tool to reveal more information and try sample prompts!</strong>
+          </div>
+      </header>
+
+      <div class="tools-grid">
+          <div class="tool-card" onclick="openModal('lessonPlans')">
+              <div class="tool-icon">
+                  <span>📝</span>
+              </div>
+              <div class="tool-content">
+                  <h3 class="tool-title">Lesson Plans and Activities</h3>
+                  <p class="tool-description">Get ideas for augmenting, enhancing, or transforming lesson plans with interesting materials, effective learning objectives, and helpful assessments.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+
+          <div class="tool-card" onclick="openModal('classCommunications')">
+              <div class="tool-icon">
+                  <span>💬</span>
+              </div>
+              <div class="tool-content">
+                  <h3 class="tool-title">Class Communications</h3>
+                  <p class="tool-description">Generate personalized emails to families, meeting agendas, morning announcements, and entertaining newsletters in minutes.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+
+          <div class="tool-card" onclick="openModal('funMaterials')">
+              <div class="tool-icon">
+                  <span>🎨</span>
+              </div>
+              <div class="tool-content">
+                  <h3 class="tool-title">Relevant and Fun Materials</h3>
+                  <p class="tool-description">Add real-life examples to make worksheets more fun, transform experiments, and keep students interested and excited to learn.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+
+          <div class="tool-card" onclick="openModal('assessmentAssistant')">
+              <div class="tool-icon">
+                  <span>📊</span>
+              </div>
+              <div class="tool-content">
+                  <h3 class="tool-title">Assessment Assistant</h3>
+                  <p class="tool-description">Develop dynamic quizzes, worksheets, and rubrics with AI-powered templates and prompts of varied difficulty levels.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+
+          <div class="tool-card" onclick="openModal('readingLevel')">
+              <div class="tool-icon">
+                  <span>📚</span>
+              </div>
+              <div class="tool-content">
+                  <h3 class="tool-title">Reading Level Evaluation</h3>
+                  <p class="tool-description">Perform quick readability checks and get specific adjustments to make your text more approachable for students.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+
+          <div class="tool-card" onclick="openModal('summaries')">
+              <div class="tool-icon">
+                  <span>📋</span>
+              </div>
+              <div class="tool-content">
+                  <h3 class="tool-title">Insightful Summaries</h3>
+                  <p class="tool-description">Develop concise overviews of complex subjects to improve student comprehension and highlight key points.</p>
+                  <button class="try-button">Try It Out →</button>
+              </div>
+          </div>
+      </div>
+
+      <div class="parts-section">
+          <h2 class="parts-title">How to Write Effective Prompts</h2>
+          <p class="parts-subtitle">Use the "PARTS" framework for better AI responses</p>
+          
+          <div class="parts-grid">
+              <div class="part-item">
+                  <div class="part-letter">P</div>
+                  <div class="part-name">Persona</div>
+                  <div class="part-description">Identify your role to set context</div>
+              </div>
+              <div class="part-item">
+                  <div class="part-letter">A</div>
+                  <div class="part-name">Aim</div>
+                  <div class="part-description">State your objective with specific task</div>
+              </div>
+              <div class="part-item">
+                  <div class="part-letter">R</div>
+                  <div class="part-name">Recipients</div>
+                  <div class="part-description">Specify intended audience</div>
+              </div>
+              <div class="part-item">
+                  <div class="part-letter">T</div>
+                  <div class="part-name">Theme</div>
+                  <div class="part-description">Describe style, tone, parameters</div>
+              </div>
+              <div class="part-item">
+                  <div class="part-letter">S</div>
+                  <div class="part-name">Structure</div>
+                  <div class="part-description">Note desired output format</div>
+              </div>
+          </div>
+          
+          <div class="template-section">
+              <h3 class="template-title">Prompt Template</h3>
+              <div class="template-text">
+                  I am a [Enter your persona]. [State your aim and recipients]. [Describe the theme and structure].
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="lessonPlansModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('lessonPlansModal')">&times;</span>
+              <h2 class="modal-title">📝 Lesson Plans and Activities</h2>
+          </div>
+          <div class="modal-body">
+              <p>Get ideas for augmenting, enhancing, or transforming lesson plans and activities with interesting materials, effective learning objectives, and helpful assessments. AI can also help you differentiate materials and resources when you want to challenge students or provide additional support.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Sample Prompt:</h3>
+                  <div class="prompt-text">
+                      I'm a middle school teacher. The following is an activity for my class. Suggest ways to add differentiation to the following activity for students who finish quickly:
+
+Binary Treasure Hunt: Cracking the Code to Hidden Messages!
+
+Time: 30 minutes
+
+Materials:
+• Whiteboard or projector
+• Markers or pens
+• Handouts with different binary-coded messages for each group
+• Chart with binary values (0s and 1s) and corresponding letters
+
+Learning Objectives:
+• Understand the basics of binary code and its role in computers
+• Practice problem-solving and teamwork
+• Learn about information representation and coding
+
+Activity: Briefly explain that computers understand information as 0s and 1s, called binary code. Today, the students will become code detectives using a chart to translate secret messages hidden in binary! Split the class into small groups of 2-3 students. Each group receives a different binary-coded message and a chart. With the chart, students work together to translate each binary digit (0 or 1) into letters, forming a hidden message. Encourage teamwork and creative thinking! When done, each group shares their decoded message and explains their thought process.
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="classCommunicationsModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('classCommunicationsModal')">&times;</span>
+              <h2 class="modal-title">💬 Class Communications</h2>
+          </div>
+          <div class="modal-body">
+              <p>Use AI tools to generate a personalized and informative email to families, a club meeting agenda, a morning announcement, a helpful reminder, or an entertaining newsletter — in minutes. AI adapts to your desired tone, ensuring your message is received as you intend.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Sample Prompt:</h3>
+                  <div class="prompt-text">
+                      Write a short morning announcement reminding 7th graders to bring a bag lunch for tomorrow's field trip to the Botanical Gardens.
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="funMaterialsModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('funMaterialsModal')">&times;</span>
+              <h2 class="modal-title">🎨 Relevant and Fun Materials</h2>
+          </div>
+          <div class="modal-body">
+              <p>With AI's creative input, you can add real-life examples to make math worksheets more fun, transform a science experiment, or sneak an element of surprise into a reading assignment. AI tools can suggest all kinds of ways to keep students interested and excited to learn.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Sample Prompt:</h3>
+                  <div class="prompt-text">
+                      I am an English teacher. Here is a reading assignment for my 11th graders. Enhance it to include inclusive, classroom appropriate examples, such as by asking students to create a review of the poem for a teen literary magazine:
+
+Text Analysis: Exposing Irony in a Poem
+
+Choose a short poem with significant use of irony. It could be verbal irony (the speaker says one thing but means the opposite), situational irony (a surprise twist in the plot), or dramatic irony (when the reader knows something that the characters do not).
+
+Materials: Pen/pencil, paper, access to the poem.
+
+Instructions:
+• Ask students to read the poem carefully twice. Underline any statements, descriptions, or situations that strike them as ironic or contradictory.
+• Identify the type of irony used: Verbal (word meaning vs. context), situational (unexpected outcome), or dramatic (audience knows more than characters).
+• Analyze the effect of irony: How does it contribute to the meaning, tone, or mood of the poem? Does it add humor, shock, or deeper understanding?
+• Choose 2-3 specific examples of irony and explain their impact: Briefly quote the lines and analyze how the literal meaning versus the intended meaning creates irony.
+• Consider the speaker's perspective: How does the use of irony reflect the speaker's awareness, intentions, or emotions?
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="assessmentAssistantModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('assessmentAssistantModal')">&times;</span>
+              <h2 class="modal-title">📊 Assessment Assistant</h2>
+          </div>
+          <div class="modal-body">
+              <p>Develop dynamic quizzes, worksheets, and rubrics with AI-powered templates and prompts. You can create multiple versions of assessments of varied difficulty levels and formats to go beyond traditional tests and provide additional opportunities for students to demonstrate their understanding.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Sample Prompt:</h3>
+                  <div class="prompt-text">
+                      I am a sixth-grade math teacher. Create 1 fun and realistic word problem for 11-year-old students. The word problem must multiply 2-digit numbers and 3-digit numbers together, for example: 24 x 322 or 14 x 556.
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="readingLevelModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('readingLevelModal')">&times;</span>
+              <h2 class="modal-title">📚 Reading Level Evaluation</h2>
+          </div>
+          <div class="modal-body">
+              <p>Perform quick readability and accessibility checks to help ensure class content will be understood. AI tools offer specific adjustments to make your text more approachable, such as revising sentence structure, using simpler vocabulary, and proposing alternative content formats.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Sample Prompt:</h3>
+                  <div class="prompt-text">
+                      Review this worksheet and point out areas where the writing can be simplified in order to ensure the reading level is appropriate for my 10th graders:
+
+Back to the Future: Forecasting the Impact of Technological Advancements
+
+Time: 20 minutes
+Topic: Social Studies - Future Studies
+
+Instructions:
+First, assess the landscape of prevalent technological advancements, focusing on their societal and individual impact. Identify dominant technological advancements permeating various facets of human experience, including locomotion, communication, entertainment, and the labor landscape. Then, imagine you're a time traveler visiting the year 2050. What singular technological advancement resonates with you? Describe it in detail, considering its function and performing a brief impact analysis. Analyze the potential positive and negative impacts of this advancement. How might it affect society, the environment, and individuals? Based on your exploration, articulate crucial considerations for the responsible development and implementation of future technologies. Focus on ethical frameworks, inclusivity, and potential unintended consequences.
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="summariesModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('summariesModal')">&times;</span>
+              <h2 class="modal-title">📋 Insightful Summaries</h2>
+          </div>
+          <div class="modal-body">
+              <p>Develop a concise overview of a complex subject to improve student comprehension, highlight key points, and provide a framework for understanding. AI helps elucidate challenging concepts, making tough topics more accessible for students.</p>
+              
+              <div class="prompt-section">
+                  <h3 class="prompt-title">Sample Prompt:</h3>
+                  <div class="prompt-text">
+                      I am a high school economics teacher. Provide a simple and accessible summary of macroeconomics for my students. Clearly explain how this branch of economics encompasses how entire economies function.
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      function openModal(modalId) {
+          const modal = document.getElementById(modalId + 'Modal');
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(modalId) {
+          const modal = document.getElementById(modalId);
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+      }
+
+      // Close modal when clicking outside of it
+      window.onclick = function(event) {
+          const modals = document.querySelectorAll('.modal');
+          modals.forEach(modal => {
+              if (event.target === modal) {
+                  modal.style.display = 'none';
+                  document.body.style.overflow = 'auto';
+              }
+          });
+      }
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+              const modals = document.querySelectorAll('.modal');
+              modals.forEach(modal => {
+                  if (modal.style.display === 'block') {
+                      modal.style.display = 'none';
+                      document.body.style.overflow = 'auto';
+                  }
+              });
+          }
+      });
+  </script>
+
+  <!-- Return to Index Link -->
+  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <a href="index.html" style="
+          display: inline-block;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          text-decoration: none;
+          padding: 12px 20px;
+          border-radius: 50px;
+          font-weight: 600;
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          transition: all 0.3s ease;
+          font-size: 14px;
+      " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'">
+          ← Back to Home
+      </a>
+  </div>
+</body>
+</html>

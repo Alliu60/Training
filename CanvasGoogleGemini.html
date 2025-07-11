@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas for Google Gemini - AI Integration</title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      
+      body {
+          font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+          line-height: 1.6;
+          color: #202124;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+      }
+      
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+      }
+      
+      header {
+          text-align: center;
+          color: white;
+          margin-bottom: 3rem;
+      }
+      
+      .main-title {
+          font-size: 3rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      }
+      
+      .subtitle {
+          font-size: 1.3rem;
+          opacity: 0.9;
+          max-width: 800px;
+          margin: 0 auto 2rem;
+      }
+      
+      .intro-text {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 2rem;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          margin-bottom: 3rem;
+          font-size: 1.1rem;
+          line-height: 1.8;
+      }
+      
+      .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 2rem;
+          margin-bottom: 3rem;
+      }
+      
+      .feature-card {
+          background: white;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
+          cursor: pointer;
+          position: relative;
+      }
+      
+      .feature-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      
+      .feature-icon {
+          height: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 4rem;
+          color: white;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .feature-icon::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, #4285f4 0%, #ea4335 25%, #fbbc04 50%, #34a853 75%, #9aa0a6 100%);
+          opacity: 0.9;
+      }
+      
+      .feature-icon span {
+          position: relative;
+          z-index: 2;
+      }
+      
+      .feature-content {
+          padding: 2rem;
+      }
+      
+      .feature-title {
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin-bottom: 1rem;
+          color: #333;
+      }
+      
+      .feature-description {
+          color: #666;
+          margin-bottom: 1.5rem;
+          line-height: 1.6;
+      }
+      
+      .try-button {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          border: none;
+          padding: 0.8rem 1.5rem;
+          border-radius: 25px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          font-size: 0.9rem;
+      }
+      
+      .try-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+      
+      .how-it-works {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+          padding: 2rem;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          margin-bottom: 3rem;
+      }
+      
+      .how-it-works h2 {
+          font-size: 2rem;
+          margin-bottom: 1.5rem;
+          text-align: center;
+      }
+      
+      .steps {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+          margin-top: 2rem;
+      }
+      
+      .step {
+          background: rgba(255, 255, 255, 0.1);
+          padding: 1.5rem;
+          border-radius: 10px;
+          border-left: 4px solid #fbbc04;
+      }
+      
+      .step-number {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #fbbc04;
+          margin-bottom: 0.5rem;
+      }
+      
+      .step-title {
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+      }
+      
+      .prompts-section {
+          background: white;
+          border-radius: 20px;
+          padding: 2rem;
+          margin-bottom: 3rem;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .prompts-section h2 {
+          font-size: 2rem;
+          color: #333;
+          margin-bottom: 1.5rem;
+          text-align: center;
+      }
+      
+      .prompt-card {
+          background: #f8f9fa;
+          border-radius: 10px;
+          padding: 1.5rem;
+          margin-bottom: 1.5rem;
+          border-left: 4px solid #4285f4;
+      }
+      
+      .prompt-title {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: #333;
+          margin-bottom: 1rem;
+      }
+      
+      .prompt-description {
+          color: #666;
+          margin-bottom: 1rem;
+          line-height: 1.6;
+      }
+      
+      .prompt-features {
+          list-style: none;
+          padding-left: 0;
+      }
+      
+      .prompt-features li {
+          color: #555;
+          margin-bottom: 0.5rem;
+          padding-left: 1.5rem;
+          position: relative;
+      }
+      
+      .prompt-features li::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #34a853;
+          font-weight: bold;
+      }
+      
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(5px);
+      }
+      
+      .modal-content {
+          background-color: white;
+          margin: 2% auto;
+          padding: 0;
+          border-radius: 20px;
+          width: 90%;
+          max-width: 800px;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+          animation: modalSlideIn 0.3s ease;
+      }
+      
+      @keyframes modalSlideIn {
+          from {
+              opacity: 0;
+              transform: translateY(-50px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+      
+      .modal-header {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+          padding: 2rem;
+          border-radius: 20px 20px 0 0;
+      }
+      
+      .modal-title {
+          font-size: 2rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+      }
+      
+      .modal-body {
+          padding: 2rem;
+      }
+      
+      .close {
+          position: absolute;
+          right: 1.5rem;
+          top: 1.5rem;
+          color: white;
+          font-size: 2rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+      }
+      
+      .close:hover {
+          transform: scale(1.1);
+          opacity: 0.8;
+      }
+      
+      .google-footer {
+          background: rgba(255, 255, 255, 0.1);
+          color: white;
+          padding: 2rem;
+          text-align: center;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      @media (max-width: 768px) {
+          .main-title {
+              font-size: 2rem;
+          }
+          
+          .features-grid {
+              grid-template-columns: 1fr;
+          }
+          
+          .steps {
+              grid-template-columns: 1fr;
+          }
+          
+          .modal-content {
+              width: 95%;
+              margin: 5% auto;
+          }
+      }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <header>
+          <h1 class="main-title">✨ Canvas for Google Gemini</h1>
+          <p class="subtitle">AI-Powered Integration for Enhanced Course Creation</p>
+          <div class="intro-text">
+              Canvas for Google Gemini is an <strong>integration</strong> that brings Gemini's generative AI capabilities directly into the Canvas Learning Management System (LMS). It's designed to help instructors and teaching assistants create course materials more efficiently.
+          </div>
+      </header>
+
+      <div class="features-grid">
+          <div class="feature-card" onclick="openModal('contentCreation')">
+              <div class="feature-icon">
+                  <span>🎯</span>
+              </div>
+              <div class="feature-content">
+                  <h3 class="feature-title">AI-Powered Content Creation</h3>
+                  <p class="feature-description">Generate syllabi, assignments, quiz questions, rubrics, and content for modules and pages right within the familiar Canvas interface.</p>
+                  <button class="try-button">Learn More →</button>
+              </div>
+          </div>
+
+          <div class="feature-card" onclick="openModal('streamlinedWorkflow')">
+              <div class="feature-icon">
+                  <span>⚡</span>
+              </div>
+              <div class="feature-content">
+                  <h3 class="feature-title">Streamlined Workflow</h3>
+                  <p class="feature-description">Use AI tools directly where you build your courses, without switching between Gemini's website and Canvas.</p>
+                  <button class="try-button">Learn More →</button>
+              </div>
+          </div>
+
+          <div class="feature-card" onclick="openModal('customizationControl')">
+              <div class="feature-icon">
+                  <span>🎛️</span>
+              </div>
+              <div class="feature-content">
+                  <h3 class="feature-title">Customization and Control</h3>
+                  <p class="feature-description">Review, edit, and refine all AI-generated materials before publishing to ensure they meet your teaching standards.</p>
+                  <button class="try-button">Learn More →</button>
+              </div>
+          </div>
+      </div>
+
+      <div class="how-it-works">
+          <h2>How It Works</h2>
+          <div class="steps">
+              <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-title">Accessing the Tool</div>
+                  <p>Look for the sparkle icon ✨ next to content editors for assignments, quizzes, pages, and other course materials within Canvas.</p>
+              </div>
+              <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-title">Writing a Prompt</div>
+                  <p>Provide a clear and concise prompt describing the content you need, such as quiz questions or rubric criteria.</p>
+              </div>
+              <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-title">Generating and Editing</div>
+                  <p>Gemini processes your prompt and generates content directly in the Canvas editor. Modify, add, or adjust as needed before publishing.</p>
+              </div>
+          </div>
+      </div>
+
+      <div class="prompts-section">
+          <h2>Interactive Learning Prompts</h2>
+          
+          <div class="prompt-card">
+              <h3 class="prompt-title">Interactive Quizzes with Exam Paper</h3>
+              <p class="prompt-description">Create engaging test questions that mirror specific formats with interactive webpage-like experiences.</p>
+              <ul class="prompt-features">
+                  <li>Generate 3-5 sample questions based on user input</li>
+                  <li>Support numerical input and multiple-choice selections</li>
+                  <li>Provide detailed explanations after completion</li>
+                  <li>Simulate interactive webpage test scenarios</li>
+              </ul>
+          </div>
+
+          <div class="prompt-card">
+              <h3 class="prompt-title">Interactive Quizzes with Current Attachment</h3>
+              <p class="prompt-description">Act as a quiz master to create learning-focused multiple-choice questions from provided content.</p>
+              <ul class="prompt-features">
+                  <li>Show one question at a time with four possible answers</li>
+                  <li>Wait for user selection and provide immediate feedback</li>
+                  <li>Offer detailed explanations for correct answers</li>
+                  <li>Progress through questions with "NEXT" prompts</li>
+              </ul>
+          </div>
+
+          <div class="prompt-card">
+              <h3 class="prompt-title">Understanding Content Through Games</h3>
+              <p class="prompt-description">Create engaging game experiences to help users understand specific content through active participation.</p>
+              <ul class="prompt-features">
+                  <li>Adapt game mechanics to user's learning style</li>
+                  <li>Break content into manageable, interactive segments</li>
+                  <li>Provide hints and explanations when users struggle</li>
+                  <li>Track progress and adjust difficulty as needed</li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="google-footer">
+          <p><strong>Canvas for Google Gemini Integration</strong></p>
+          <p>Enhancing education through AI-powered course creation tools</p>
+      </div>
+  </div>
+
+  <!-- Modals -->
+  <div id="contentCreationModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('contentCreationModal')">&times;</span>
+              <h2 class="modal-title">🎯 AI-Powered Content Creation</h2>
+          </div>
+          <div class="modal-body">
+              <p>The primary function of the Canvas-Gemini integration is to assist educators in generating comprehensive course content efficiently.</p>
+              
+              <h3>What You Can Create:</h3>
+              <ul>
+                  <li><strong>Syllabi:</strong> Generate detailed course outlines with learning objectives, schedules, and policies</li>
+                  <li><strong>Assignments:</strong> Create engaging project descriptions, instructions, and requirements</li>
+                  <li><strong>Quiz Questions:</strong> Develop various question types including multiple choice, short answer, and essay prompts</li>
+                  <li><strong>Rubrics:</strong> Design comprehensive evaluation criteria with clear performance levels</li>
+                  <li><strong>Module Content:</strong> Generate educational content for course modules and pages</li>
+              </ul>
+              
+              <h3>Benefits:</h3>
+              <ul>
+                  <li>Save time on content creation</li>
+                  <li>Ensure consistency across course materials</li>
+                  <li>Generate ideas when experiencing writer's block</li>
+                  <li>Create diverse question types and assessment formats</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+  <div id="streamlinedWorkflowModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('streamlinedWorkflowModal')">&times;</span>
+              <h2 class="modal-title">⚡ Streamlined Workflow</h2>
+          </div>
+          <div class="modal-body">
+              <p>The integration eliminates the need to switch between different platforms, allowing you to use AI assistance directly within Canvas.</p>
+              
+              <h3>Workflow Improvements:</h3>
+              <ul>
+                  <li><strong>Single Platform:</strong> Work entirely within Canvas without external tool switching</li>
+                  <li><strong>Context Awareness:</strong> Gemini understands the Canvas environment and course structure</li>
+                  <li><strong>Immediate Integration:</strong> Generated content appears directly in Canvas editors</li>
+                  <li><strong>Seamless Experience:</strong> Natural integration with existing Canvas workflows</li>
+              </ul>
+              
+              <h3>Example Use Cases:</h3>
+              <ul>
+                  <li>Creating a new quiz and generating questions on the spot</li>
+                  <li>Developing assignment rubrics while building the assignment</li>
+                  <li>Writing course announcements with AI assistance</li>
+                  <li>Generating discussion prompts for course forums</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+  <div id="customizationControlModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span class="close" onclick="closeModal('customizationControlModal')">&times;</span>
+              <h2 class="modal-title">🎛️ Customization and Control</h2>
+          </div>
+          <div class="modal-body">
+              <p>While Gemini provides AI-generated content, instructors maintain complete control over the final materials used in their courses.</p>
+              
+              <h3>Control Features:</h3>
+              <ul>
+                  <li><strong>Review Process:</strong> All generated content can be thoroughly reviewed before use</li>
+                  <li><strong>Edit Capability:</strong> Modify any aspect of the generated content to match your needs</li>
+                  <li><strong>Refinement Tools:</strong> Adjust tone, complexity, and focus of generated materials</li>
+                  <li><strong>Quality Assurance:</strong> Ensure content meets your specific teaching standards</li>
+              </ul>
+              
+              <h3>Customization Options:</h3>
+              <ul>
+                  <li>Adjust reading level and complexity</li>
+                  <li>Modify question difficulty and format</li>
+                  <li>Align content with specific learning objectives</li>
+                  <li>Incorporate course-specific terminology and examples</li>
+                  <li>Maintain consistency with your teaching style</li>
+              </ul>
+              
+              <h3>Best Practices:</h3>
+              <ul>
+                  <li>Always review AI-generated content for accuracy</li>
+                  <li>Customize content to match your course objectives</li>
+                  <li>Test quiz questions before publishing to students</li>
+                  <li>Ensure rubrics align with assignment expectations</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      function openModal(modalId) {
+          const modal = document.getElementById(modalId + 'Modal');
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(modalId) {
+          const modal = document.getElementById(modalId);
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+      }
+
+      // Close modal when clicking outside of it
+      window.onclick = function(event) {
+          const modals = document.querySelectorAll('.modal');
+          modals.forEach(modal => {
+              if (event.target === modal) {
+                  modal.style.display = 'none';
+                  document.body.style.overflow = 'auto';
+              }
+          });
+      }
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape') {
+              const modals = document.querySelectorAll('.modal');
+              modals.forEach(modal => {
+                  if (modal.style.display === 'block') {
+                      modal.style.display = 'none';
+                      document.body.style.overflow = 'auto';
+                  }
+              });
+          }
+      });
+  </script>
+
+  <!-- Return to Index Link -->
+  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <a href="index.html" style="
+          display: inline-block;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          text-decoration: none;
+          padding: 12px 20px;
+          border-radius: 50px;
+          font-weight: 600;
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          transition: all 0.3s ease;
+          font-size: 14px;
+      " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'">
+          ← Back to Home
+      </a>
+  </div>
+</body>
+</html>

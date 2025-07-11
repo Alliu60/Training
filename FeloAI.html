@@ -867,4 +867,69 @@
           
           <div class="testimonial-card">
               <p class="testimonial-quote">
-                  "Felo AI is a transformative tool for researchers an
+                  "Felo AI is a transformative tool for researchers and educators. Its ability to synthesize complex information and generate actionable insights makes it indispensable for modern academic and business research."
+              </p>
+              <div class="testimonial-author">
+                  <strong>Dr. Sarah Chen</strong><br>
+                  <span>Research Director, AI Innovation Lab</span>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <script>
+      function generateResearchPlan() {
+          const input = document.getElementById('researchInput').value;
+          const resultDiv = document.getElementById('researchPlan');
+
+          if (!input.trim()) {
+              resultDiv.innerHTML = '<p style="color: #ff6b6b;">Please enter a research topic first!</p>';
+              return;
+          }
+
+          const plans = [
+              `<strong>Phase 1:</strong> Literature Review & Background Analysis<br>
+               <strong>Phase 2:</strong> Data Collection & Source Verification<br>
+               <strong>Phase 3:</strong> Analysis & Pattern Recognition<br>
+               <strong>Phase 4:</strong> Synthesis & Report Generation`,
+
+              `<strong>Step 1:</strong> Market Research & Competitive Analysis<br>
+               <strong>Step 2:</strong> Stakeholder Identification<br>
+               <strong>Step 3:</strong> Risk Assessment & Mitigation<br>
+               <strong>Step 4:</strong> Strategic Recommendations`,
+
+              `<strong>Approach 1:</strong> Quantitative Data Analysis<br>
+               <strong>Approach 2:</strong> Qualitative Research Methods<br>
+               <strong>Approach 3:</strong> Cross-referencing & Validation<br>
+               <strong>Approach 4:</strong> Actionable Insights Generation`
+          ];
+
+          const randomPlan = plans[Math.floor(Math.random() * plans.length)];
+          resultDiv.innerHTML = `<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #4ecdc4;">
+              <strong>Research Topic:</strong> ${input}<br><br>
+              ${randomPlan}
+          </div>`;
+      }
+  </script>
+
+  <!-- Return to Index Link -->
+  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <a href="index.html" style="
+          display: inline-block;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          text-decoration: none;
+          padding: 12px 20px;
+          border-radius: 50px;
+          font-weight: 600;
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          transition: all 0.3s ease;
+          font-size: 14px;
+      " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'">
+          ← Back to Home
+      </a>
+  </div>
+
+</body>
+</html>

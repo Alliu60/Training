@@ -899,4 +899,106 @@
                   <h3 class="feature-title">Deep Web Search</h3>
                   <p class="feature-description">Access real-time information with advanced search capabilities. Get reliable, up-to-date results from across the web with source validation.</p>
               </div>
-              
+
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">🖼️</span>
+                  <h3 class="feature-title">Image Tools</h3>
+                  <p class="feature-description">Create, edit, and modify images with AI assistance. Generate custom visuals or enhance existing images with professional-quality results.</p>
+              </div>
+
+              <div class="feature-card" onclick="animateCard(this)">
+                  <span class="feature-icon">📅</span>
+                  <h3 class="feature-title">Task Scheduling</h3>
+                  <p class="feature-description">Built-in task management and scheduling features. Organize your workflow and set reminders with intelligent automation.</p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="testimonial-section">
+      <div class="container">
+          <div class="section-header">
+              <h2 class="section-title">User Testimonials</h2>
+              <p class="section-subtitle">See what users are saying about Grok AI</p>
+          </div>
+
+          <div class="testimonial-card">
+              <p class="testimonial-quote">
+                  "Grok AI's deep search capabilities and straightforward interface make it my go-to AI assistant. It provides accurate, well-sourced information every time."
+              </p>
+              <div class="testimonial-author">
+                  <strong>Sarah Johnson</strong><br>
+                  <span>Research Analyst</span>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <script>
+      function animateCard(card) {
+          card.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+              card.style.transform = 'scale(1)';
+          }, 150);
+      }
+
+      function generateGrokResponse() {
+          const query = document.getElementById('grokQuery').value;
+          const resultDiv = document.getElementById('grokResult');
+
+          if (!query.trim()) {
+              resultDiv.innerHTML = '<p style="color: #ff4444;">Please enter a query first!</p>';
+              return;
+          }
+
+          const responses = [
+              {
+                  type: "Deep Search Result",
+                  content: `I've searched extensively for information about "${query}". Here are the most relevant and up-to-date findings with verified sources.`
+              },
+              {
+                  type: "Analysis & Insights",
+                  content: `Based on my analysis of "${query}", I can provide detailed insights and practical recommendations tailored to your specific needs.`
+              },
+              {
+                  type: "Creative Solution",
+                  content: `For "${query}", I've generated several innovative approaches and solutions that you might find useful for your project.`
+              }
+          ];
+
+          const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+
+          resultDiv.innerHTML = `
+              <div style="background: linear-gradient(135deg, #2d2d2d 0%, #4a4a4a 100%); color: white; padding: 20px; border-radius: 12px; margin-top: 15px;">
+                  <h4 style="margin-bottom: 15px;">🤖 Grok AI Response</h4>
+                  <p><strong>Response Type:</strong> ${randomResponse.type}</p>
+                  <p style="margin-top: 10px;">${randomResponse.content}</p>
+                  <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
+                      ⚡ This is a simulated response. Actual Grok AI provides real-time, sourced information.
+                  </p>
+              </div>
+          `;
+      }
+  </script>
+
+  <!-- Return to Index Link -->
+  <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <a href="index.html" style="
+          display: inline-block;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          text-decoration: none;
+          padding: 12px 20px;
+          border-radius: 50px;
+          font-weight: 600;
+          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+          transition: all 0.3s ease;
+          font-size: 14px;
+      " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.6)'"
+         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.4)'">
+          ← Back to Home
+      </a>
+  </div>
+
+</body>
+</html>
